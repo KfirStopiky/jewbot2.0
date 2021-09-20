@@ -1,0 +1,191 @@
+/**
+ * Inputs
+ */
+
+/* Input label */
+
+.label {
+    color: #fff;
+    user-select: none;
+    margin-bottom: 8px;
+}
+
+/* Input label has help button */
+
+.label.has-btn-help {
+    display: flex;
+    justify-content: space-between;
+}
+
+.label.has-btn-help .btn-help {
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+}
+
+.label.has-btn-help .btn-help .icon {
+    fill: var(--color-4);
+    transition: fill 200ms ease-in-out;
+}
+
+.label.has-btn-help .btn-help:hover .icon,
+.label.has-btn-help .btn-help:focus .icon {
+    fill: var(--color-5);
+    transition: fill 200ms ease-in-out;
+}
+
+/* Input group */
+
+.input-group:not(:last-child) {
+    margin-bottom: 12px;
+}
+
+/* Multiple input groups */
+
+.multiple-input-groups {
+    display: flex;
+    flex-direction: column;
+}
+
+.multiple-input-groups:not(:last-child) {
+    margin-bottom: 12px;
+}
+
+@media (min-width: 720px) {
+
+    .multiple-input-groups {
+        flex-direction: row;
+    }
+
+    .multiple-input-groups .input-group:not(:last-child) {
+        margin-right: 12px;
+        margin-bottom: 0;
+    }
+
+}
+
+/* Input */
+
+.form-control {
+    /* Reset */
+    width: 100%;
+    display: block;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 56px;
+    text-align: right;
+    font-family: inherit;
+    /* Style */
+    color: #fff;
+    background-color: var(--color-2);
+    border: 2px solid var(--color-4);
+    border-radius: 16px;
+    padding: 0 16px;
+    transition: border-color 200ms ease-in-out;
+}
+
+.form-control:hover, 
+.form-control:focus {
+    border-color: var(--color-5);
+}
+
+.form-control::placeholder {
+    color: var(--color-5);
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+}
+
+/* Input with addon */
+
+.has-addon {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.has-addon .form-control {
+    border-radius: 16px 0 0 16px;
+}
+
+.has-addon .form-control ~ .addon {
+    /* Reset */
+    line-height: 56px;
+    /* Style */
+    background-color: var(--color-3);
+    border: 2px solid var(--color-4);
+    border-radius: 0 16px 16px 0;
+    border-left: 0;
+    padding: 0 16px;
+}
+
+/* Input with animated addon */
+
+.has-animated-addon {
+    position: relative;
+    width: 100%;
+}
+
+.has-animated-addon .form-control {
+    transition: border-color 200ms ease-in-out,
+        padding-bottom 200ms ease-in-out,
+        line-height 200ms ease-in-out;
+    /* Height must be set for transition to work correctly on chrome */
+    height: 60px;
+}
+
+.has-animated-addon:focus-within .form-control,
+.has-animated-addon .form-control:not(:placeholder-shown) {
+    padding-bottom: 18px;
+    line-height: 38px;
+}
+
+.has-animated-addon .addon {
+    position: absolute;
+    pointer-events: none;
+    color: var(--color-6);
+    font-size: 12px;
+    bottom: 2px;
+    right: 20px;
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+}
+
+.has-animated-addon:focus-within .addon,
+.has-animated-addon .form-control:not(:placeholder-shown) ~ .addon {
+    opacity: 1;
+}
+
+/* Input textarea */
+
+textarea.form-control {
+    resize: none;
+    text-align: left;
+    font-family: monospace;
+    padding: 16px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/* Input is invalid */
+
+.is-invalid .form-control {
+    background-color: #340000;
+    border-color: #670000;
+}
+
+.is-invalid .form-control:hover,
+.is-invalid .form-control:focus {
+    border-color: #9a0000;
+}
+
+.is-invalid .form-control::placeholder {
+    color: #b30000;
+}
+
+.has-addon.is-invalid .form-control ~ .addon {
+    background-color: #4d0000;
+    border-color: #670000;
+    color: #b30000;
+}

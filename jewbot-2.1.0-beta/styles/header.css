@@ -1,0 +1,43 @@
+/**
+ * Header
+ */
+
+header {
+    position: relative;
+}
+
+header > .container {
+    display: flex;
+    flex-direction: column;
+}
+
+header .row {
+    display: flex;
+    flex-direction: column;
+    padding: 0 6px;
+}
+
+header .row .col {
+    padding: 12px 6px 0 6px;
+}
+
+@media (min-width: 360px) {
+
+    header > .container {
+        align-items: center;
+    }
+
+    header .row {
+        flex-direction: row;
+    } 
+
+}
+
+@media (min-width: 720px) {
+
+    header > .container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+}

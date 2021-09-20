@@ -1,0 +1,730 @@
+/**
+ * Scan View
+ */
+
+#scan {
+    cursor: default;
+}
+
+/**
+ * Top section
+ */
+
+#top .col {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#top .col-1 header {
+    position: relative;
+    background-color: var(--color-2);
+    border: 2px solid var(--color-4);
+    border-radius: 24px 24px 0 0;
+    border-bottom: 0;
+    font-weight: bold;
+    text-align: center;
+    overflow: hidden;
+    padding: 0 12px;
+}
+
+#top .col-1 header .btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0;
+    padding: 9px 8px 7px 7px;
+    border-color: var(--color-4);
+    background-color: var(--color-3);
+    border-width: 0 0 0 2px;
+}
+
+#top .col-1 header .btn .icon {
+    width: 16px;
+    height: 16px;
+}
+
+#top .col-2 header {
+    display: flex;
+    overflow: hidden;
+}
+
+#top .col-2 header .btn {
+    background-color: var(--color-2);
+    border-color: var(--color-4);
+    border-radius: 24px 24px 0 0;
+    border-bottom: 0;
+    padding: 0 12px;
+    font-weight: bold;
+    overflow: hidden;
+    min-width: 64px;
+}
+
+#top .col-2 header .btn + .btn {
+    margin-left: 12px;
+}
+
+#top .resizer {
+    height: 12px;
+    pointer-events: none;
+}
+
+#top section {
+    height: 320px;
+    overflow: scroll;
+    background-color: var(--color-2);
+    border: 2px solid var(--color-4);
+    border-radius: 0 0 24px 24px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#top section::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+#top table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#top thead tr th {
+    position: sticky;
+    z-index: 1;
+    top: 0px;
+    text-align: left;
+    padding: 0 12px 2px;
+    background-color: var(--color-3);
+    box-shadow: inset 0 -2px 0 0 var(--color-4);
+}
+
+#top thead tr th + th {
+    box-shadow: inset 2px -2px 0 0 var(--color-4);
+}
+
+#top tbody tr {
+    background-color: var(--color-2);
+    box-shadow: inset 0 -2px 0 0 var(--color-3);
+}
+
+#top tbody:nth-child(odd) tr {
+    background-color: var(--color-1);
+}
+
+#top tbody:last-child tr {
+    box-shadow: none;
+}
+
+#top tbody tr td {
+    padding: 0 12px 2px;
+}
+
+@media (min-width: 720px) {
+ 
+    #top {
+        display: flex;
+        /* Section 320px + header 34px */
+        height: 354px;
+    }
+
+    #top .col {
+        /* Minimum width of resized column */
+        min-width: 64px;
+    }
+
+    #top .col-1 {
+        /* 50% - 6px compensate separator */
+        width: calc(50% - 6px);
+    }
+
+    #top .col-2 {
+        /* Take rest of horizontal space */
+        flex: 1;
+    }
+
+    #top .resizer {
+        pointer-events: auto;
+        position: relative;
+        cursor: ew-resize;
+        height: 100%;
+        width: 12px;
+    }
+    
+    #top .resizer::before,
+    #top .resizer::after {
+        content: '';
+        position: absolute;
+        background-color: var(--color-4);
+        border-radius: 2px;
+        top: 50%;
+        width: 6px;
+        height: 2px;
+        margin-left: 3px;
+        margin-top: -2px;
+    }
+    
+    #top .resizer::after {
+        margin-top: 2px;
+    }
+
+}
+
+/**
+ * Top Performers
+ */
+
+#modal_top_performers .body {
+    max-height: calc(100vh - (24px + 148px));
+}
+
+/**
+ * Stream
+ */
+
+#stream tbody tr td {
+    padding: 2px 12px 4px;
+}
+
+#stream td.info {
+    width: 100%;
+}
+
+#stream td.info .data {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#stream td.info .data .text {
+    background-color: var(--color-3);
+    box-shadow: inset 0px 0px 0px 2px var(--color-4);
+    border-radius: 8px;
+    line-height: 28px;
+    margin: 2px 6px 2px 0;
+    padding: 0 6px;
+}
+
+#stream td.event .wrapper,
+#stream td.links .wrapper {
+    display: flex;
+    align-items: center;
+}
+
+#stream td.event .time,
+#stream td.links .btn + .btn {
+    margin-left: 6px;
+}
+
+#stream td.links .btn {
+    padding: 8px;
+    font-weight: bold;
+    border-radius: 12px;
+}
+
+/**
+ * Wallet
+ */
+
+#wallet tbody tr td {
+    padding: 2px 12px 4px;
+}
+
+#wallet td.info {
+    width: 100%;
+}
+
+#wallet td.event .wrapper,
+#wallet td.actions .wrapper {
+    display: flex;
+    align-items: center;
+}
+
+#wallet td.event .time,
+#wallet td.actions .btn + .btn {
+    margin-left: 6px;
+}
+
+#wallet td.actions .btn {
+    padding: 8px;
+    font-weight: bold;
+    border-radius: 12px;
+}
+
+/**
+ * Trades
+ */
+
+#trades tbody tr td {
+    padding: 4px 12px 6px;
+}
+
+#trades td.info {
+    width: 100%;
+}
+
+#trades td.actions .wrapper {
+    display: flex;
+    align-items: center;
+}
+
+#trades .btn {
+    padding: 8px;
+    font-weight: bold;
+    border-radius: 12px;
+}
+
+#trades td.actions .btn + .btn {
+    margin-left: 6px;
+}
+
+#trades .text {
+    display: flex;
+}
+
+#trades .text + .text {
+    margin-top: 4px;
+}
+
+#trades .text .icon {
+    margin-right: 6px;
+}
+
+/**
+ * Center section
+ */
+
+#center .btn-icon {
+    padding: 8px;
+}
+
+#center .form-control,
+#center .addon {
+    line-height: 48px;
+}
+
+#center .col-2 .addon {
+    padding: 0;
+}
+
+#center .col-2 .addon .btn {
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+#modal_transactions_settings .body,
+#modal_rss_settings .body,
+#modal_rss_columns .body {
+    max-height: calc(100vh - (24px + 148px));
+}
+
+#modal_rss_settings .col-2 {
+    padding-top: 12px;
+}
+
+#modal_rss_settings .col-2 .lists {
+    min-height: 320px;
+    padding: 16px;
+    color: var(--color-6);
+    background-color: var(--color-2);
+    border: 2px solid var(--color-4);
+    border-radius: 16px;
+}
+
+#modal_rss_settings .col-2 .lists .list {
+    cursor: pointer;
+}
+
+#modal_rss_settings .col-2 .lists .list:hover {
+    color: #fff;
+}
+
+@media (min-width: 720px) {
+
+    #center {
+        display: flex;
+    }
+
+    #center .col-1 {
+        margin: 0;
+        width: 50%;
+    }
+
+    #center .col-2 {
+        width: 50%;
+        margin-left: 12px;
+    }
+
+    #modal_rss_settings .container {
+        max-width: 960px;
+        position: relative;
+    }
+
+    #modal_rss_settings .col {
+        width: 50%;
+    }
+
+    #modal_rss_settings .col-2 {
+        position: absolute;
+        padding-left: 24px;
+        right: 12px;
+        top: 58px;
+    }
+}
+
+/**
+ * Bottom section
+ */
+
+#modal_token .body .data > div {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+#modal_token .body .data > div > div:first-child {
+    display: flex;
+    margin-right: 3px;
+}
+
+#modal_token .body .data .icon {
+    margin-right: 6px;
+}
+
+/**
+ * RSS table
+ */
+
+#rss table,
+#rss thead,
+#rss tbody,
+#rss tr,
+#rss th,
+#rss td {
+    /*
+    * Flex all <table> elements for
+    * mobile small screens
+    */
+    display: flex;
+    flex-flow: column nowrap;
+    /* 
+    * 30px line-height for tables so
+    * we can fit 2 rows of text next
+    * to a 60px button, icon, etc.
+    */
+    line-height: 30px;
+}
+
+#rss thead {
+    /* Hide <thead> on mobile */
+    display: none;
+}
+
+#rss tbody {
+    border: 2px solid var(--color-4);
+    background-color: var(--color-3);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+#rss tbody + tbody {
+    margin-top: 12px;
+}
+
+#rss tbody tr td {
+    flex-flow: row nowrap;
+    padding: 12px;
+}
+
+#rss tbody tr td + td {
+    border-top: 2px solid var(--color-4);
+}
+
+#rss tbody tr td[data-title]::before {
+    /*
+    * Since we are hiding <thead> on mobile
+    * we display column title inside <td>
+    */
+    content: attr(data-title);
+    margin-right: auto;
+}
+
+#rss tbody tr td[data-title] {
+    /* Wrap <td> contents on small screens */
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    text-align: right;
+}
+
+#rss tbody tr.row-1 td:first-child + td {
+    /*
+    * Position absolutely <td> that contains
+    * token symbol and name on top of <td>
+    * that contains token icon
+    */
+    flex-flow: column nowrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border: 0;
+    padding-left: 84px;
+}
+
+#rss tbody tr.row-2 {
+    /* 
+    * Reorder <tr> element that contains
+    * BUY and SELL buttons to last place
+    */
+    order: 3;
+}
+
+#rss tbody tr.row-2 td[rowspan="2"] .btn {
+    background-color: var(--color-2);
+}
+
+#rss tbody tr.row-2 td[rowspan="2"] .btn + .btn {
+    padding: 12px 0;
+    margin-left: 12px;
+}
+
+#rss tbody tr:not(.row-1) td:first-child {
+    /* Hide emoji <td> on mobile */
+    display: none;
+}
+
+#rss .text {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#rss .text + .text {
+    /* Place sibling under previous */
+    width: 100%;
+}
+
+#rss .icon-styled {
+    /* Custom <svg> to avoid wrappers */
+    display: block;
+    width: 52px;
+    height: 52px;
+    padding: 8px;
+    background-color: var(--color-2);
+    border: 2px solid var(--color-4);
+    border-radius: 12px;
+}
+
+@media (min-width: 720px) {
+
+    #rss {
+        /* max-width: 1080px; */
+    }
+
+    /* Reset <table> flexed elements */
+
+    #rss table {
+        display: table;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #rss thead {
+        display: table-header-group;
+        vertical-align: middle;
+    }
+
+    #rss tbody {
+        display: table-row-group;
+        vertical-align: middle;
+        /*
+        * Position must be set to initial or Firefox
+        * will not show borders and spits following
+        * warning in console:
+        *
+        * Warning: Relative positioning of table rows and row groups is
+        * now supported. This site may need to be updated because it
+        * may depend on this feature having no effect.
+        */
+        position: initial;
+    }
+
+    #rss thead tr,
+    #rss tbody tr {
+        display: table-row;
+        vertical-align: middle;
+    }
+
+    #rss thead tr th {
+        display: table-cell;
+        vertical-align: middle;
+        position: sticky;
+        z-index: 1;
+        top: 0;
+    }
+
+    #rss tbody tr td {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    /* Reset <table> mobile styling */
+
+    #rss tbody {
+        border: 0;
+    }
+
+    #rss tbody tr td {
+        padding: 0;
+    }
+
+    #rss tbody tr td + td {
+        border-top: 0;
+    }
+
+    #rss tbody tr td[data-title]::before {
+        /*
+        * Since we are showing <thead> on desktop
+        * we hide column title inside <td>
+        */
+        display: none;
+    }
+
+    #rss tbody tr td[data-title] {
+        text-align: center;
+    }
+
+    #rss tbody tr.row-1 td:first-child + td {
+        /* 
+        * Reset absolutely positioned <td> element
+        * and Firefox bug (read note above)
+        */
+        position: initial;
+        padding-left: 0;
+    }
+
+    #rss tbody tr.row-2 td[rowspan="2"] .btn + .btn {
+        margin-left: 0;
+    }
+
+    #rss tbody tr:not(.row-1) td:first-child {
+        display: table-cell;
+    }
+
+    /* Set <table> desktop styling */
+
+    #rss .table-container {
+        border: 2px solid var(--color-4);
+        border-radius: 16px;
+        max-height: 464px;
+        overflow: auto;
+        white-space: nowrap;
+        /* Remove scrollbars */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    #rss .table-container::-webkit-scrollbar {
+        /* Remove scrollbars */
+        width: 0;
+        height: 0;
+    }
+
+    #rss thead .btn-icon {
+        /* Filter button background */
+        background-color: var(--color-2);
+        padding: 8px;
+    }
+
+
+    #rss tbody tr.row-1 {
+        transition: color 200ms ease-in-out;
+    }
+
+    #rss tbody:hover tr.row-1 {
+        color: #fff;
+    }
+
+    #rss tbody tr.row-1 td:first-child + td {
+        text-align: center;
+    }
+
+    #rss tbody tr.row-2 td[rowspan="2"] {
+        padding: 0 12px;
+        background-color: var(--color-1);
+    }
+
+    #rss tbody tr.row-2 td[rowspan="2"] .btn-icon {
+        /* Hide three dots button */
+        display: none;
+    }
+
+    #rss tbody tr.row-2 td[rowspan="2"] .btn + .btn {
+        margin: 8px 0;
+        padding: 8px;
+    }
+
+    #rss tbody tr:not(.row-1) td:first-child {
+        background-color: var(--color-1);
+    }
+
+    #rss tbody tr:not(.row-1) td[data-title] {
+        text-align: left;
+        background-color: var(--color-1);
+    }
+
+    #rss tbody tr:not(.row-1) td[data-title] .text {
+        width: auto;
+        vertical-align: top;
+        display: inline-block;
+        background-color: var(--color-2);
+        border: 2px solid var(--color-4);
+        border-radius: 12px;
+        margin-bottom: 2px;
+        margin-right: 2px;
+        padding: 9px;
+    }
+
+    /* Last touches, magic, box-shadows and shit */
+
+    #rss thead tr th:first-child,
+    #rss tbody tr td:first-child {
+        /* 
+        * Here height of each column is set 
+        * First <td> is key and rest follow
+        */
+        width: 64px;
+        height: 64px;
+        padding: 6px;
+        /* Compensate for 2px box-shadow on bottom */
+        padding-bottom: 8px;
+    }
+
+    #rss thead tr th,
+    #rss tbody tr td {
+        box-shadow: inset 0px -2px 0px 0px var(--color-4);
+    }
+
+    #rss thead tr.row-1 th {
+        background-color: var(--color-3);
+    }
+
+    #rss thead tr.row-1 th + th,
+    #rss tbody tr.row-1 td + td {
+        box-shadow: inset 2px -2px 0px 0px var(--color-4);
+    }
+
+    #rss tbody tr.row-2 td[rowspan="2"] {
+        box-shadow: inset 2px -2px 0px 0px var(--color-4);
+    }
+
+    /* Remove box-shadow of last <tbody> so when scrolled all the way down in does not appear doubled */
+
+    #rss tbody:last-child tr.row-3 td {
+        box-shadow: none;
+    }
+
+    #rss tbody:last-child tr.row-2 td[rowspan="2"] {
+        box-shadow: inset 2px 0px 0px 0px var(--color-4);;
+    }
+
+}

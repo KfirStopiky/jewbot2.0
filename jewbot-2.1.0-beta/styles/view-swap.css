@@ -1,0 +1,182 @@
+/**
+ * Swap View
+ */
+
+#swap .row {
+    max-width: 560px;
+}
+
+/* Token group */
+
+.token-group {
+    background-color: var(--color-3);
+    border: 2px solid var(--color-4);
+    border-radius: 16px;
+    margin-bottom: 12px;
+    padding: 12px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (min-width: 720px) {
+
+    .token-group {
+        flex-direction: row;
+    }
+
+    .token-group .input-group {
+        margin-bottom: 0;
+    }
+
+}
+
+/* Token group button */
+
+.token-group button {
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    color: #fff;
+    display: flex;
+}
+
+.token-group button .image {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-2);
+    border: 2px solid var(--color-4);
+    border-radius: 12px;
+    padding: 12px;
+    transition: border-color 200ms ease-in-out;
+}
+
+.token-group button:hover .image,
+.token-group button:focus .image {
+    border-color: var(--color-5);
+}
+
+.token-group button .symbol {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: auto 8px;
+}
+
+.token-group button .symbol span:first-child {
+    white-space: nowrap;
+    line-height: 14px;
+    font-size: 14px;
+    color: var(--color-5);
+}
+
+.token-group button .symbol span:last-child {
+    font-size: 32px;
+    line-height: 32px;
+}
+
+/* Token group input */
+
+@media (min-width: 720px) {
+
+    .token-group .has-animated-addon {
+        max-width: 240px;
+    }
+
+}
+
+/* Buttons group */
+
+.buttons-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons-group .icon-buttons {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.buttons-group .icon-buttons button:not(:last-child) {
+    margin-right: 12px;
+}
+
+@media (min-width: 720px) {
+
+    .buttons-group {
+        flex-direction: row;
+    }
+
+    .buttons-group .icon-buttons {
+        margin-bottom: 0;
+        margin-right: 12px;
+    }
+
+}
+
+/* Terminal */
+
+#terminal {
+    font-family: monospace;
+    min-height: 136px;
+    padding: 16px;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-6);
+    background-color: var(--color-1);
+    border: 2px solid var(--color-4);
+    border-radius: 16px;
+}
+
+/* MODAL Token select && MODAL Tansaction settings */
+
+#modal_token_select .body,
+#modal_transactions_settings .body {
+    max-height: calc(100vh - (24px + 148px));
+}
+
+/* MODAL Transactions active & MODAL Transactions completed */
+
+.transaction-modal .transaction {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-2);
+    border: 2px solid var(--color-4);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    padding: 12px;
+}
+
+.transaction-modal .transaction:last-child {
+    margin-bottom: 0;
+}
+
+.transaction-modal .transaction .data .icon {
+    margin-right: 6px;
+}
+
+.transaction-modal .transaction .data > div > div:first-child {
+    display: flex;
+}
+
+@media (min-width: 720px) {
+
+    .transaction-modal .transaction .data > div {
+        display: flex;
+        margin-bottom: 12px;
+    }
+
+    .transaction-modal .transaction .data > div > div:first-child {
+        margin-right: 3px;
+    }
+
+}
+
+/* MODAL Help */
+
+#modal_help .container {
+    max-width: 400px;
+}

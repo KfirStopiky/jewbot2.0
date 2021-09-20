@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan - Jewbot</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/modals.css">
+    <link rel="stylesheet" href="styles/inputs.css">
+    <link rel="stylesheet" href="styles/buttons.css">
+    <link rel="stylesheet" href="styles/various.css">
+    <link rel="stylesheet" href="styles/helpers.css">
+    <link rel="stylesheet" href="styles/view-scan.css">
+</head>
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="icon_three_dots" viewBox="0 0 16 16">
+            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+        </symbol>
+
+        <symbol id="icon_three_dots_vertical" viewBox="0 0 16 16">
+            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+        </symbol>
+
+        <symbol id="icon_bullseye" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10zm0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+            <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+            <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+        </symbol>
+
+        <symbol id="icon_clock_history" viewBox="0 0 16 16">
+            <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"></path>
+            <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"></path>
+            <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"></path>
+        </symbol>
+
+        <symbol id="icon_x_circle" viewBox="0 0 16 16">
+            <rect fill="#191919" width="16" height="16" rx="100%"></rect>
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
+        </symbol>
+
+        <symbol id="icon_trash" viewBox="0 0 16 16">
+            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+        </symbol>
+
+        <symbol id="icon_sliders" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z" />
+        </symbol>
+
+        <symbol id="icon_question_one" viewBox="0 0 16 16">
+            <rect fill="#333333" width="16" height="16" rx="100%"/>
+            <path fill="#666666" d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path fill="#666666" d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+        </symbol>
+
+        <symbol id="icon_question_two" viewBox="0 0 16 16">
+            <rect fill="#191919" width="16" height="16" rx="100%"/>
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+        </symbol>
+
+        <symbol id="icon_coin" viewBox="0 0 16 16">
+            <rect fill="#333333" width="16" height="16" rx="100%"/>
+            <path fill="#666666" fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path fill="#666666" d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
+        </symbol>
+
+        <symbol id="icon_plus" viewBox="0 0 16 16">
+            <rect fill="#333333" width="16" height="16" rx="100%"/>
+            <path fill="#666666" d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path fill="#666666" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+        </symbol>
+
+        <symbol id="icon_person_circle" viewBox="0 0 16 16">
+            <rect fill="#333333" width="16" height="16" rx="100%"/>
+            <path fill="#666666" d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path fill="#666666" fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+        </symbol>
+
+        <symbol id="icon_braces" viewBox="0 0 16 16">
+            <path d="M2.114 8.063V7.9c1.005-.102 1.497-.615 1.497-1.6V4.503c0-1.094.39-1.538 1.354-1.538h.273V2h-.376C3.25 2 2.49 2.759 2.49 4.352v1.524c0 1.094-.376 1.456-1.49 1.456v1.299c1.114 0 1.49.362 1.49 1.456v1.524c0 1.593.759 2.352 2.372 2.352h.376v-.964h-.273c-.964 0-1.354-.444-1.354-1.538V9.663c0-.984-.492-1.497-1.497-1.6zM13.886 7.9v.163c-1.005.103-1.497.616-1.497 1.6v1.798c0 1.094-.39 1.538-1.354 1.538h-.273v.964h.376c1.613 0 2.372-.759 2.372-2.352v-1.524c0-1.094.376-1.456 1.49-1.456V7.332c-1.114 0-1.49-.362-1.49-1.456V4.352C13.51 2.759 12.75 2 11.138 2h-.376v.964h.273c.964 0 1.354.444 1.354 1.538V6.3c0 .984.492 1.497 1.497 1.6z"/>
+        </symbol>
+
+        <symbol id="icon_graph" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5z"/>
+        </symbol>
+
+        <symbol id="icon_arrow_down_up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+        </symbol>
+
+        <symbol id="icon_search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </symbol>
+
+        <symbol id="icon_filter_circle" viewBox="0 0 16 16">
+            <rect fill="#333333" width="16" height="16" rx="100%"/>
+            <path fill="#666666" d="M7 11.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
+            <path fill="#666666" d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        </symbol>
+
+        <symbol id="icon_emoji_smile" viewBox="0 0 16 16">
+            <rect fill="#333333" width="16" height="16" rx="100%"/>
+            <path fill="#666666" d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path fill="#666666" d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+        </symbol>
+
+        <symbol id="icon_emoji_frown" viewBox="0 0 16 16">
+            <rect fill="#333333" width="16" height="16" rx="100%"/>
+            <path fill="#666666" d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path fill="#666666" d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+        </symbol>
+
+        <symbol id="icon_clock" viewBox="0 0 16 16">
+            <rect fill="#333333" width="16" height="16" rx="100%"/>
+            <path fill="#666666" d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+            <path fill="#666666" d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+        </symbol>
+
+        <symbol id="icon_positive" viewBox="0 0 16 16">
+            <rect fill="#145423" width="16" height="16" rx="100%"/>
+            <path fill="#1e7e35" fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.854 10.803a.5.5 0 1 1-.708-.707L9.243 6H6.475a.5.5 0 1 1 0-1h3.975a.5.5 0 0 1 .5.5v3.975a.5.5 0 1 1-1 0V6.707l-4.096 4.096z"/>
+        </symbol>
+
+        <symbol id="icon_negative" viewBox="0 0 16 16">
+            <rect fill="#4d0000" width="16" height="16" rx="100%"/>
+            <path fill="#9a0000" fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.854 5.146a.5.5 0 1 0-.708.708L9.243 9.95H6.475a.5.5 0 1 0 0 1h3.975a.5.5 0 0 0 .5-.5V6.475a.5.5 0 1 0-1 0v2.768L5.854 5.146z"/>
+        </symbol>
+
+        <symbol id="icon_gear" viewBox="0 0 16 16">
+            <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+            <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+        </symbol>
+
+        <symbol id="icon_gear_fill" viewBox="0 0 16 16">
+            <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+        </symbol>
+
+        <symbol id="icon_share" viewBox="0 0 16 16">
+            <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+        </symbol>
+    </svg>
+
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <button id="view_swap" class="btn text-bold">SWAP</button>
+                </div>
+
+                <div class="col">
+                    <button id="view_scan" class="btn text-bold active">SCAN</button>
+                </div>
+
+                <div class="col">
+                    <button id="view_shop" class="btn text-bold">SHOP</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button id="connect_wallet_header" class="btn text-bold text-white">CONNECT WALLET</button>
+
+                    <button id="disconnect_wallet_header" class="btn hidden">
+                        <span class="text-bold text-white">DISCONNECT</span>
+
+                        <span>0x1337&hellip;</span>
+                    </button>
+                </div>
+
+                <div class="col">
+                    <button id="toggle_menu" class="btn btn-icon" data-toggle="modal_menu">
+                        <svg class="icon">
+                            <use xlink:href="#icon_three_dots"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="scan">
+        <div class="container">
+            <div id="top" class="row row-1">
+                <div class="col col-1">
+                    <header>
+                        <div>TOP PERFORMERS</div>
+                        <button class="btn btn-icon w-auto" data-toggle="modal_top_performers">
+                            <svg class="icon">
+                                <use xlink:href="#icon_gear_fill"/>
+                            </svg>
+                        </button>
+                    </header>
+                    <section id="topers">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>NAME</th>
+                                    <th>SYMBOL</th>
+                                    <th>LQ</th>
+                                    <th>LQ/MCAP</th>
+                                    <th>15s</th>
+                                    <th>1m</th>
+                                    <th>5m</th>
+                                    <th>10m</th>
+                                </tr>
+                            </thead>
+                
+                            <tbody>
+                                <tr>
+                                    <td>Elite Token</td>
+                                    <td>LEET</td>
+                                    <td>20 BNB</td>
+                                    <td>13.37%</td>
+                                    <td class="text-green">+13.37%</td>
+                                    <td class="text-red">-13.37%</td>
+                                    <td class="text-green">+37.13%</td>
+                                    <td class="text-green">+370.13%</td>
+                                </tr>
+                            </tbody>
+    
+                            <tbody>
+                                <tr>
+                                    <td>Long Name Toke…</td>
+                                    <td>LNT</td>
+                                    <td>1234 BNB</td>
+                                    <td>12.34%</td>
+                                    <td class="text-red">-23.45%</td>
+                                    <td class="text-green">+34.56%</td>
+                                    <td class="text-green">+45.67%</td>
+                                    <td class="text-green">+56.78%</td>
+                                </tr>
+                            </tbody>
+    
+                            <tbody>
+                                <tr>
+                                    <td>LUCKY</td>
+                                    <td>LUCKY</td>
+                                    <td>7 BNB</td>
+                                    <td>7.77%</td>
+                                    <td class="text-green">+7.77%</td>
+                                    <td class="text-green">+7.77%</td>
+                                    <td class="text-green">+77.77%</td>
+                                    <td class="text-green">+777.77%</td>
+                                </tr>
+                            </tbody>
+    
+                            <tbody>
+                                <tr>
+                                    <td>Shiba Moon</td>
+                                    <td>SHIMOO</td>
+                                    <td>94 BNB</td>
+                                    <td>543.47%</td>
+                                    <td class="text-green">+733.2%</td>
+                                    <td class="text-red">-135.67%</td>
+                                    <td class="text-green">+657.37%</td>
+                                    <td class="text-red">-913.63%</td>
+                                </tr>
+                            </tbody>
+    
+                            <tbody>
+                                <tr>
+                                    <td>Whatever</td>
+                                    <td>WHTVR</td>
+                                    <td>29 BNB</td>
+                                    <td>45.25%</td>
+                                    <td class="text-red">-12.04%</td>
+                                    <td class="text-green">+63.78%</td>
+                                    <td class="text-green">+84.18%</td>
+                                    <td class="text-green">+20.18%</td>
+                                </tr>
+                            </tbody>
+    
+                            <tbody>
+                                <tr>
+                                    <td>Dummy Token</td>
+                                    <td>DUMMY</td>
+                                    <td>6431 BNB</td>
+                                    <td>24.36%</td>
+                                    <td class="text-green">+12.65%</td>
+                                    <td class="text-red">-12.17%</td>
+                                    <td class="text-green">+312.23%</td>
+                                    <td class="text-green">+560.34%</td>
+                                </tr>
+                            </tbody>
+    
+                            <tbody>
+                                <tr>
+                                    <td>Just 4 Fun</td>
+                                    <td>FUN</td>
+                                    <td>246 BNB</td>
+                                    <td>42.60%</td>
+                                    <td class="text-green">+23.12%</td>
+                                    <td class="text-green">+52.62%</td>
+                                    <td class="text-green">+245.37%</td>
+                                    <td class="text-green">+912.36%</td>
+                                </tr>
+                            </tbody>
+    
+                            <tbody>
+                                <tr>
+                                    <td>Example Token</td>
+                                    <td>EXAMPLE</td>
+                                    <td>123 BNB</td>
+                                    <td>123.00%</td>
+                                    <td class="text-red">-123.00%</td>
+                                    <td class="text-green">+123.00%</td>
+                                    <td class="text-green">+123.00%</td>
+                                    <td class="text-red">-123.00%</td>
+                                </tr>
+                            </tbody>
+    
+                            <tbody>
+                                <tr>
+                                    <td>Example Token</td>
+                                    <td>EXAMPLE</td>
+                                    <td>123 BNB</td>
+                                    <td>123.00%</td>
+                                    <td class="text-green">+123.00%</td>
+                                    <td class="text-green">+123.00%</td>
+                                    <td class="text-red">-123.00%</td>
+                                    <td class="text-green">+123.00%</td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td>Example Token</td>
+                                    <td>EXAMPLE</td>
+                                    <td>123 BNB</td>
+                                    <td>123.00%</td>
+                                    <td class="text-green">+123.00%</td>
+                                    <td class="text-green">+123.00%</td>
+                                    <td class="text-green">+123.00%</td>
+                                    <td class="text-green">+123.00%</td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td>Example Token</td>
+                                    <td>EXAMPLE</td>
+                                    <td>123 BNB</td>
+                                    <td>123.00%</td>
+                                    <td class="text-green">+123.00%</td>
+                                    <td class="text-red">-123.00%</td>
+                                    <td class="text-red">-123.00%</td>
+                                    <td class="text-green">+123.00%</td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td>Example Token</td>
+                                    <td>EXAMPLE</td>
+                                    <td>123 BNB</td>
+                                    <td>123.00%</td>
+                                    <td class="text-green">+123.00%</td>
+                                    <td class="text-green">+123.00%</td>
+                                    <td class="text-green">+123.00%</td>
+                                    <td class="text-red">-123.00%</td>
+                                </tr>
+                            </tbody>
+    
+                            <tbody>
+                                <tr>
+                                    <td>Last Token</td>
+                                    <td>LAST</td>
+                                    <td>999 BNB</td>
+                                    <td>999.00%</td>
+                                    <td class="text-green">+999.00%</td>
+                                    <td class="text-green">+999.00%</td>
+                                    <td class="text-green">+999.00%</td>
+                                    <td class="text-green">+999.00%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+
+                <div id="resizer" class="resizer"></div>
+    
+                <div class="col col-2">
+                    <header>
+                        <button id="tab_stream" class="btn">STREAM</button>
+                        <button id="tab_wallet" class="btn">WALLET</button>
+                        <button id="tab_trades" class="btn">TRADES</button>
+                    </header>
+                    <section id="stream" class="">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>EVENT</th>
+                                    <th>INFORMATION</th>
+                                    <th>LINKS</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <svg class="icon">
+                                                <use xlink:href="#icon_person_circle"></use>
+                                            </svg>
+                                            <div class="time">13:37</div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="name">Elite Token (LEET)</div>
+                                        <div class="data">
+                                            <div class="text">OWNERSHIP RENOUNCED</div>
+                                        </div>
+                                    </td>
+                                    <td class="links">
+                                        <div class="wrapper">
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_braces"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_graph"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_arrow_down_up"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <svg class="icon">
+                                                <use xlink:href="#icon_coin"></use>
+                                            </svg>
+                                            <div class="time">13:20</div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="name">Elite Token (LEET)</div>
+                                        <div class="data">
+                                            <div class="text">15 BNB ADDED TO LQ POOL</div>
+                                        </div>
+                                    </td>
+                                    <td class="links">
+                                        <div class="wrapper">
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_braces"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_graph"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_arrow_down_up"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <svg class="icon">
+                                                <use xlink:href="#icon_plus"></use>
+                                            </svg>
+                                            <div class="time">13:11</div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="name">Elite Token (LEET)</div>
+                                        <div class="data">
+                                            <div class="text">MCAP 123M</div>
+                                            <div class="text">LQ 123k</div>
+                                            <div class="text">LOCKED 123D</div>
+                                            <div class="text">KOSHER</div>
+                                        </div>
+                                    </td>
+                                    <td class="links">
+                                        <div class="wrapper">
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_braces"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_graph"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_arrow_down_up"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <svg class="icon">
+                                                <use xlink:href="#icon_person_circle"></use>
+                                            </svg>
+                                            <div class="time">13:09</div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="name">Example (EXAMPLE)</div>
+                                        <div class="data">
+                                            <div class="text">OWNERSHIP RENOUNCED</div>
+                                        </div>
+                                    </td>
+                                    <td class="links">
+                                        <div class="wrapper">
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_braces"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_graph"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_arrow_down_up"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <svg class="icon">
+                                                <use xlink:href="#icon_coin"></use>
+                                            </svg>
+                                            <div class="time">13:02</div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="name">Example (EXAMPLE)</div>
+                                        <div class="data">
+                                            <div class="text">1 BNB ADDED TO LQ POOL</div>
+                                        </div>
+                                    </td>
+                                    <td class="links">
+                                        <div class="wrapper">
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_braces"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_graph"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_arrow_down_up"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <svg class="icon">
+                                                <use xlink:href="#icon_plus"></use>
+                                            </svg>
+                                            <div class="time">12:56</div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="name">Example (EXAMPLE)</div>
+                                        <div class="data">
+                                            <div class="text">MCAP 1k</div>
+                                            <div class="text">LQ 1k</div>
+                                            <div class="text">KOSHER</div>
+                                        </div>
+                                    </td>
+                                    <td class="links">
+                                        <div class="wrapper">
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_braces"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_graph"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn btn-icon">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_arrow_down_up"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section id="wallet" class="hidden">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="3">INFORMATION</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <svg class="icon">
+                                                <use xlink:href="#icon_negative"></use>
+                                            </svg>
+                                            <div class="time">13:37</div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="name">Elite Token (LEET)</div>
+                                        <div class="data">
+                                            <div class="text">$13.37</div>
+                                        </div>
+                                    </td>
+                                    <td class="actions">
+                                        <div class="wrapper">                                            
+                                            <button class="btn">SELL</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <svg class="icon">
+                                                <use xlink:href="#icon_positive"></use>
+                                            </svg>
+                                            <div class="time">12:34</div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="name">Example (EXAMPLE)</div>
+                                        <div class="data">
+                                            <div class="text">$123.45</div>
+                                        </div>
+                                    </td>
+                                    <td class="actions">
+                                        <div class="wrapper">                                            
+                                            <button class="btn">SELL</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <svg class="icon">
+                                                <use xlink:href="#icon_negative"></use>
+                                            </svg>
+                                            <div class="time">13:37</div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="name">Elite Token (LEET)</div>
+                                        <div class="data">
+                                            <div class="text">$13.37</div>
+                                        </div>
+                                    </td>
+                                    <td class="actions">
+                                        <div class="wrapper">                                            
+                                            <button class="btn">SELL</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <svg class="icon">
+                                                <use xlink:href="#icon_positive"></use>
+                                            </svg>
+                                            <div class="time">12:34</div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="name">Example (EXAMPLE)</div>
+                                        <div class="data">
+                                            <div class="text">$123.45</div>
+                                        </div>
+                                    </td>
+                                    <td class="actions">
+                                        <div class="wrapper">                                            
+                                            <button class="btn">SELL</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <svg class="icon">
+                                                <use xlink:href="#icon_negative"></use>
+                                            </svg>
+                                            <div class="time">13:37</div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="name">Elite Token (LEET)</div>
+                                        <div class="data">
+                                            <div class="text">$13.37</div>
+                                        </div>
+                                    </td>
+                                    <td class="actions">
+                                        <div class="wrapper">                                            
+                                            <button class="btn">SELL</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <svg class="icon">
+                                                <use xlink:href="#icon_positive"></use>
+                                            </svg>
+                                            <div class="time">12:34</div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="name">Example (EXAMPLE)</div>
+                                        <div class="data">
+                                            <div class="text">$123.45</div>
+                                        </div>
+                                    </td>
+                                    <td class="actions">
+                                        <div class="wrapper">                                            
+                                            <button class="btn">SELL</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section id="trades" class="hidden">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="3">INFORMATION</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_clock"></use>
+                                                </svg>
+                                                <div class="time">13:37</div>
+                                            </div>
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_question_one"></use>
+                                                </svg>
+                                                <div>Elite Token (LEET)</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="wrapper">
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_coin"></use>
+                                                </svg>
+                                                0.1337 BNB
+                                            </div>
+
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_positive"></use>
+                                                </svg>
+                                                13.37 BNB
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="actions">
+                                        <div class="wrapper">
+                                            <button class="btn btn-icon w-auto">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_share"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn w-auto">SELL</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_clock"></use>
+                                                </svg>
+                                                <div class="time">12:34</div>
+                                            </div>
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_question_one"></use>
+                                                </svg>
+                                                <div>Example (EXAMPLE)</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="wrapper">
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_coin"></use>
+                                                </svg>
+                                                12.3456 BNB
+                                            </div>
+
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_negative"></use>
+                                                </svg>
+                                                0.1234 BNB
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="actions">
+                                        <div class="wrapper">
+                                            <button class="btn btn-icon w-auto">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_share"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn w-auto">SELL</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_clock"></use>
+                                                </svg>
+                                                <div class="time">13:37</div>
+                                            </div>
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_question_one"></use>
+                                                </svg>
+                                                <div>Elite Token (LEET)</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="wrapper">
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_coin"></use>
+                                                </svg>
+                                                0.1337 BNB
+                                            </div>
+
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_positive"></use>
+                                                </svg>
+                                                13.37 BNB
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="actions">
+                                        <div class="wrapper">
+                                            <button class="btn btn-icon w-auto">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_share"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn w-auto">SELL</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_clock"></use>
+                                                </svg>
+                                                <div class="time">12:34</div>
+                                            </div>
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_question_one"></use>
+                                                </svg>
+                                                <div>Example (EXAMPLE)</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="wrapper">
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_coin"></use>
+                                                </svg>
+                                                12.3456 BNB
+                                            </div>
+
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_negative"></use>
+                                                </svg>
+                                                0.1234 BNB
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="actions">
+                                        <div class="wrapper">
+                                            <button class="btn btn-icon w-auto">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_share"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn w-auto">SELL</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_clock"></use>
+                                                </svg>
+                                                <div class="time">13:37</div>
+                                            </div>
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_question_one"></use>
+                                                </svg>
+                                                <div>Elite Token (LEET)</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="wrapper">
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_coin"></use>
+                                                </svg>
+                                                0.1337 BNB
+                                            </div>
+
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_positive"></use>
+                                                </svg>
+                                                13.37 BNB
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="actions">
+                                        <div class="wrapper">
+                                            <button class="btn btn-icon w-auto">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_share"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn w-auto">SELL</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td class="event">
+                                        <div class="wrapper">
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_clock"></use>
+                                                </svg>
+                                                <div class="time">12:34</div>
+                                            </div>
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_question_one"></use>
+                                                </svg>
+                                                <div>Example (EXAMPLE)</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="wrapper">
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_coin"></use>
+                                                </svg>
+                                                12.3456 BNB
+                                            </div>
+
+                                            <div class="text">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_negative"></use>
+                                                </svg>
+                                                0.1234 BNB
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="actions">
+                                        <div class="wrapper">
+                                            <button class="btn btn-icon w-auto">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon_share"></use>
+                                                </svg>
+                                            </button>
+
+                                            <button class="btn w-auto">SELL</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+
+            <div id="center" class="row row-2">
+                <div class="col col-1 multiple-input-groups">
+                    <div class="input-group">
+                        <button class="btn btn-icon" data-toggle="modal_rss_settings">
+                            <svg class="icon">
+                                <use xlink:href="#icon_three_dots_vertical"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="input-group">
+                        <button class="btn btn-icon" data-toggle="modal_transactions_settings">
+                            <svg class="icon">
+                                <use xlink:href="#icon_sliders"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="0.00">
+                        <div class="addon">BNB</div>
+                    </div>
+                </div>
+
+                <div class="col col-2 input-group has-addon">
+                    <input class="form-control" placeholder="Search">
+                    <div class="addon">
+                        <button class="btn btn-icon">
+                            <svg class="icon">
+                                <use xlink:href="#icon_search"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="rss" class="row">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr class="row-1">
+                                <th>
+                                    <button class="btn btn-icon w-auto" data-toggle="modal_rss_columns">
+                                        <svg class="icon">
+                                            <use xlink:href="#icon_filter_circle"></use>
+                                        </svg>
+                                    </button>
+                                </th>
+                                <th>TOKEN</th>
+                                <th>PRICE</th>
+                                <th>MCAP</th>
+                                <th>LQ POOL</th>
+                                <th>LQ LOCK</th>
+                                <th>TAX</th>
+                                <th>VOL</th>
+                            </tr>
+                        </thead>
+            
+                        <tbody data-toggle="modal_token">
+                            <tr class="row-1">
+                                <td>
+                                    <svg class="icon-styled">
+                                        <use xlink:href="#icon_question_one"></use>
+                                    </svg>
+                                </td>
+                                <td>
+                                    <div class="text">LEET</div>
+                                    <div class="text">Elite Token</div>
+                                </td>
+                                <td data-title="PRICE">
+                                    <div class="text">$0.1337</div>
+                                </td>
+                                <td data-title="MCAP">
+                                    <div class="text">$133.7k</div>
+                                </td>
+                                <td data-title="LQ POOL">
+                                    <div class="text">20 BNB</div>
+                                </td>
+                                <td data-title="LQ LOCK">
+                                    <div class="text">15 DAYS</div>
+                                </td>
+                                <td data-title="TAX">
+                                    <div class="text">15%</div>
+                                </td>
+                                <td data-title="VOL">
+                                    <div class="text">X1.5</div>
+                                    <div class="text">+50%</div>
+                                </td>
+                            </tr>
+                            <tr class="row-2">
+                                <td>
+                                    <svg class="icon-styled">
+                                        <use xlink:href="#icon_emoji_smile"></use>
+                                    </svg>
+                                </td>
+                                <td colspan="6" data-title="POSITIVE">
+                                    <div class="text">KOSHER</div>
+                                    <div class="text">RENOUNCED</div>
+                                    <div class="text">NO WHALES</div>
+                                    <div class="text">FAIR LAUNCH</div>
+                                </td>
+                                <td rowspan="2">
+                                    <button class="btn btn-icon w-auto">
+                                        <svg class="icon">
+                                            <use xlink:href="#icon_three_dots"></use>
+                                        </svg>
+                                    </button>
+                                    <button class="btn text-white text-bold">BUY</button>
+                                    <button class="btn text-white text-bold">SELL</button>
+                                </td>
+                            </tr>
+                            <tr class="row-3">
+                                <td>
+                                    <svg class="icon-styled">
+                                        <use xlink:href="#icon_emoji_frown"></use>
+                                    </svg>
+                                </td>
+                                <td colspan="6" data-title="NEGATIVE">
+                                    <div class="text">DEV WALLET 20%</div>
+                                    <div class="text">UNVERIFIED</div>
+                                    <div class="text">COMMUNITY</div>
+                                    <div class="text">MINT</div>
+                                    <div class="text">ASCII</div>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                        <tbody data-toggle="modal_token">
+                            <tr class="row-1">
+                                <td>
+                                    <svg class="icon-styled">
+                                        <use xlink:href="#icon_question_one"></use>
+                                    </svg>
+                                </td>
+                                <td>
+                                    <div class="text">WHTVR</div>
+                                    <div class="text">Whatever</div>
+                                </td>
+                                <td data-title="PRICE">
+                                    <div class="text">$0.123</div>
+                                </td>
+                                <td data-title="MCAP">
+                                    <div class="text">$123.4M</div>
+                                </td>
+                                <td data-title="LQ POOL">
+                                    <div class="text">123 BNB</div>
+                                </td>
+                                <td data-title="LQ LOCK">
+                                    <div class="text">123 DAYS</div>
+                                </td>
+                                <td data-title="TAX">
+                                    <div class="text">12%</div>
+                                </td>
+                                <td data-title="VOL">
+                                    <div class="text">X2</div>
+                                    <div class="text">+100%</div>
+                                </td>
+                            </tr>
+                            <tr class="row-2">
+                                <td>
+                                    <svg class="icon-styled">
+                                        <use xlink:href="#icon_emoji_smile"></use>
+                                    </svg>
+                                </td>
+                                <td colspan="6" data-title="POSITIVE">
+                                    <div class="text">KOSHER</div>
+                                    <div class="text">RENOUNCED</div>
+                                    <div class="text">NO WHALES</div>
+                                    <div class="text">TEST</div>
+                                </td>
+                                <td rowspan="2">
+                                    <button class="btn btn-icon w-auto">
+                                        <svg class="icon">
+                                            <use xlink:href="#icon_three_dots"></use>
+                                        </svg>
+                                    </button>
+                                    <button class="btn text-white text-bold">BUY</button>
+                                    <button class="btn text-white text-bold">SELL</button>
+                                </td>
+                            </tr>
+                            <tr class="row-3">
+                                <td>
+                                    <svg class="icon-styled">
+                                        <use xlink:href="#icon_emoji_frown"></use>
+                                    </svg>
+                                </td>
+                                <td colspan="6" data-title="NEGATIVE">
+                                    <div class="text">DEV WALLET 20%</div>
+                                    <div class="text">COMMUNITY</div>
+                                    <div class="text">MINT</div>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                        <tbody data-toggle="modal_token">
+                            <tr class="row-1">
+                                <td>
+                                    <svg class="icon-styled">
+                                        <use xlink:href="#icon_question_one"></use>
+                                    </svg>
+                                </td>
+                                <td>
+                                    <div class="text">HIGH</div>
+                                    <div class="text">High Token</div>
+                                </td>
+                                <td data-title="PRICE">
+                                    <div class="text">$0.420</div>
+                                </td>
+                                <td data-title="MCAP">
+                                    <div class="text">$420.0k</div>
+                                </td>
+                                <td data-title="LQ POOL">
+                                    <div class="text">420 BNB</div>
+                                </td>
+                                <td data-title="LQ LOCK">
+                                    <div class="text">420 DAYS</div>
+                                </td>
+                                <td data-title="TAX">
+                                    <div class="text">42%</div>
+                                </td>
+                                <td data-title="VOL">
+                                    <div class="text">X1.5</div>
+                                    <div class="text">+50%</div>
+                                </td>
+                            </tr>
+                            <tr class="row-2">
+                                <td>
+                                    <svg class="icon-styled">
+                                        <use xlink:href="#icon_emoji_smile"></use>
+                                    </svg>
+                                </td>
+                                <td colspan="6" data-title="POSITIVE">
+                                    <div class="text">KOSHER</div>
+                                    <div class="text">RENOUNCED</div>
+                                    <div class="text">NO WHALES</div>
+                                    <div class="text">TEST</div>
+                                </td>
+                                <td rowspan="2">
+                                    <button class="btn btn-icon w-auto">
+                                        <svg class="icon">
+                                            <use xlink:href="#icon_three_dots"></use>
+                                        </svg>
+                                    </button>
+                                    <button class="btn text-white text-bold">BUY</button>
+                                    <button class="btn text-white text-bold">SELL</button>
+                                </td>
+                            </tr>
+                            <tr class="row-3">
+                                <td>
+                                    <svg class="icon-styled">
+                                        <use xlink:href="#icon_emoji_frown"></use>
+                                    </svg>
+                                </td>
+                                <td colspan="6" data-title="NEGATIVE">
+                                    <div class="text">DEV WALLET 20%</div>
+                                    <div class="text">UNVERIFIED</div>
+                                    <div class="text">COMMUNITY</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="version">v2.1.0-beta</div>
+                </div>
+                <div class="col">
+                    <a href="#" class="alien">&#128125;</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL Top Performers -->
+
+    <div id="modal_top_performers" class="modal hidden">
+        <div class="backdrop" data-toggle="modal_top_performers"></div>
+        <div class="container">
+            <div class="header">
+                <div class="title">Top performers</div>
+                <button class="btn-close" data-toggle="modal_top_performers">
+                    <svg class="icon">
+                        <use xlink:href="#icon_x_circle"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="body">
+
+                <!-- FILTERS -->
+
+                <div class="text-white text-bold text-title mt-0">FILTERS</div>
+
+                <!-- LQ -->
+
+                <div class="label">LQ</div>
+
+                <div class="multiple-input-groups">            
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="MIN">
+                        <div class="addon">BNB</div>
+                    </div>
+
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="MAX">
+                        <div class="addon">BNB</div>
+                    </div>
+                </div>
+
+                <!-- LQ/MCAP -->
+
+                <div class="label">LQ/MCAP</div>
+
+                <div class="multiple-input-groups">            
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="MIN">
+                        <div class="addon">%</div>
+                    </div>
+
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="MAX">
+                        <div class="addon">%</div>
+                    </div>
+                </div>
+
+                <!-- COLUMNS -->
+
+                <div class="text-white text-bold text-title mt-0">COLUMNS</div>
+
+                <div class="label">NAME</div>
+
+                <div class="input-group">
+                    <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                </div>
+
+                <div class="label">SYMBOL</div>
+
+                <div class="input-group">
+                    <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                </div>
+
+                <div class="label">LQ/MCAP</div>
+
+                <div class="input-group">
+                    <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                </div>
+
+                <div class="label">15s</div>
+
+                <div class="input-group">
+                    <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                </div>
+
+                <div class="label">1m</div>
+
+                <div class="input-group">
+                    <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                </div>
+
+                <div class="label">5m</div>
+
+                <div class="input-group">
+                    <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                </div>
+
+                <div class="label">10m</div>
+
+                <div class="input-group">
+                    <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                </div>
+
+            </div>
+
+            <div class="footer">
+                <button class="btn text-white text-bold" data-toggle="modal_top_performers">Apply Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL Scanner Columns -->
+
+    <div id="modal_rss_columns" class="modal hidden">
+        <div class="backdrop" data-toggle="modal_rss_columns"></div>
+        <div class="container">
+            <div class="header">
+                <div class="title">Scanner Columns</div>
+                <button class="btn-close" data-toggle="modal_rss_columns">
+                    <svg class="icon">
+                        <use xlink:href="#icon_x_circle"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="body">
+
+                <div class="label">TOKEN</div>
+
+                <div class="input-group">
+                    <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                </div>
+
+                <div class="label">PRICE</div>
+
+                <div class="input-group">
+                    <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                </div>
+
+                <div class="label">MCAP</div>
+
+                <div class="input-group">
+                    <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                </div>
+
+                <div class="label">LQ POOL</div>
+
+                <div class="input-group">
+                    <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                </div>
+
+                <div class="label">LQ LOCK</div>
+
+                <div class="input-group">
+                    <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                </div>
+
+                <div class="label">TAX</div>
+
+                <div class="input-group">
+                    <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                </div>
+
+                <div class="label">VOL</div>
+
+                <div class="input-group">
+                    <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                </div>
+
+            </div>
+
+            <div class="footer">
+                <button class="btn text-white text-bold" data-toggle="modal_rss_columns">Apply Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL Scanner Settings -->
+
+    <div id="modal_rss_settings" class="modal hidden">
+        <div class="backdrop" data-toggle="modal_rss_settings"></div>
+        <div class="container">
+            <div class="header">
+                <div class="title">Scanner Settings</div>
+                <button class="btn-close" data-toggle="modal_rss_settings">
+                    <svg class="icon">
+                        <use xlink:href="#icon_x_circle"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="body">
+                <div class="col col-1">
+                    <!-- HOLDERS -->
+
+                    <div class="text-white text-bold text-title mt-0">HOLDERS</div>
+
+                    <!-- Max dev wallet -->
+
+                    <div class="label">Max dev wallet</div>
+
+                    <div class="multiple-input-groups">            
+                        <div class="input-group has-addon">
+                            <input class="form-control" placeholder="0" value="10">
+                            <div class="addon">%</div>
+                        </div>
+
+                        <div class="input-group">
+                            <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                        </div>
+                    </div>
+
+                    <!-- Top 3 / LQ -->
+
+                    <div class="label">Top 3 / LQ</div>
+
+                    <div class="multiple-input-groups">            
+                        <div class="input-group has-addon">
+                            <input class="form-control" placeholder="0">
+                            <div class="addon">%</div>
+                        </div>
+
+                        <div class="input-group">
+                            <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+                        </div>
+                    </div>
+
+                    <!-- Top 3 -->
+
+                    <div class="label">Top 3</div>
+
+                    <div class="multiple-input-groups">            
+                        <div class="input-group has-addon">
+                            <input class="form-control" placeholder="0" value="120">
+                            <div class="addon">%</div>
+                        </div>
+
+                        <div class="input-group">
+                            <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                        </div>
+                    </div>
+
+                    <!-- Max holders -->
+
+                    <div class="label">Max holders</div>
+
+                    <div class="multiple-input-groups">            
+                        <div class="input-group w-100">
+                            <input class="form-control" placeholder="0" value="300">
+                        </div>
+
+                        <div class="input-group">
+                            <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                        </div>
+                    </div>
+
+                    <!-- Transfers / 10 min -->
+
+                    <div class="label">Transfers / 10 min</div>
+
+                    <div class="multiple-input-groups">            
+                        <div class="input-group w-100">
+                            <input class="form-control" placeholder="0" value="300">
+                        </div>
+
+                        <div class="input-group">
+                            <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+                        </div>
+                    </div>
+
+                    <!-- CONTRACT -->
+
+                    <div class="text-white text-bold text-title">CONTRACT</div>
+
+                    <!-- Max total fee -->
+
+                    <div class="label">Max total fee</div>
+
+                    <div class="multiple-input-groups">            
+                        <div class="input-group has-addon">
+                            <input class="form-control" placeholder="0" value="20">
+                            <div class="addon">%</div>
+                        </div>
+
+                        <div class="input-group">
+                            <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                        </div>
+                    </div>
+
+                    <!-- Renounced -->
+
+                    <div class="label">Renounced</div>
+
+                    <div class="input-group">
+                        <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+                    </div>
+
+                    <!-- Burned -->
+
+                    <div class="label">Burned</div>
+
+                    <div class="input-group">
+                        <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+                    </div>
+
+                    <!-- Locked -->
+
+                    <div class="label">Locked</div>
+
+                    <div class="input-group">
+                        <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                    </div>
+
+                    <!-- Partialy Unlocked -->
+
+                    <div class="label">Partialy Unlocked</div>
+
+                    <div class="input-group">
+                        <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+                    </div>
+
+                    <!-- Verified -->
+
+                    <div class="label">Verified</div>
+
+                    <div class="input-group">
+                        <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                    </div>
+
+                    <!-- Check kosherness -->
+
+                    <div class="label has-btn-help">
+                        Check kosherness
+                        <button class="btn-help" data-toggle="modal_help">
+                            <svg class="icon">
+                                <use xlink:href="#icon_question_two"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="multiple-input-groups">
+                        <div class="input-group w-100">
+                            <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+                        </div>
+            
+                        <div class="input-group">
+                            <button id="toggle_kosherness_settings" class="btn btn-icon">
+                                <svg class="icon">
+                                    <use xlink:href="#icon_sliders"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="kosherness_settings" class="hidden">
+                        <div class="input-group">
+                            <textarea id="kosherness_exceptions" class="form-control hidden" placeholder="Add each of your exceptions on a new line" rows="8"></textarea>
+                        </div>
+
+                        <div class="multiple-input-groups multi-switch">
+                            <div class="input-group w-100">
+                                <button class="btn btn-toggle active">Jewbot</button>
+                            </div>
+
+                            <div class="input-group w-100">
+                                <button class="btn btn-toggle">Mixed</button>
+                            </div>
+
+                            <div class="input-group w-100">
+                                <button class="btn btn-toggle">Custom</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LIQUIITY -->
+
+                    <div class="text-white text-bold text-title">LIQUIDITY</div>
+
+                    <!-- Max liquidity owner -->
+
+                    <div class="label">Max liquidity owner</div>
+
+                    <div class="multiple-input-groups">            
+                        <div class="input-group has-addon">
+                            <input class="form-control" placeholder="0" value="2">
+                            <div class="addon">%</div>
+                        </div>
+
+                        <div class="input-group">
+                            <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                        </div>
+                    </div>
+
+                    <!-- LQ / MCap -->
+
+                    <div class="label">LQ / MCap</div>
+
+                    <div class="multiple-input-groups">
+                        <div class="input-group has-addon">
+                            <input class="form-control" placeholder="From">
+                            <div class="addon">%</div>
+                        </div>
+
+                        <div class="input-group has-addon">
+                            <input class="form-control" placeholder="To">
+                            <div class="addon">%</div>
+                        </div>
+
+                        <div class="input-group">
+                            <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+                        </div>
+                    </div>
+
+                    <!-- Min liquidity -->
+
+                    <div class="label">Min liquidity</div>
+
+                    <div class="multiple-input-groups">            
+                        <div class="input-group has-addon">
+                            <input class="form-control" placeholder="0" value="2">
+                            <div class="addon">BNB</div>
+                        </div>
+
+                        <div class="input-group">
+                            <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                        </div>
+                    </div>
+
+                    <!-- Min MCap /Max MCap -->
+
+                    <div class="label">Min MCap / Max MCap</div>
+
+                    <div class="multiple-input-groups">
+                        <div class="input-group has-addon">
+                            <input class="form-control" placeholder="Min" value="1000">
+                            <div class="addon">$</div>
+                        </div>
+
+                        <div class="input-group has-addon">
+                            <input class="form-control" placeholder="Max" value="2000">
+                            <div class="addon">$</div>
+                        </div>
+
+                        <div class="input-group">
+                            <button class="btn btn-toggle btn-toggle-binary active">ON</button>
+                        </div>
+                    </div>
+
+                    <!-- Min lock time -->
+
+                    <div class="label">Min lock time</div>
+
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="0">
+                        <div class="addon">Days</div>
+                    </div>
+
+                    <!-- EXTRA -->
+
+                    <div class="text-white text-bold text-title">EXTRA</div>
+
+                    <!-- ASCII -->
+
+                    <div class="label">ASCII</div>
+
+                    <div class="input-group">
+                        <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+                    </div>
+
+                    <!-- Community -->
+
+                    <div class="label">Community</div>
+
+                    <div class="input-group">
+                        <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+                    </div>
+
+                    <!-- Max verifications -->
+
+                    <div class="label">Max verifications</div>
+
+                    <div class="multiple-input-groups">            
+                        <div class="input-group w-100">
+                            <input class="form-control" placeholder="0">
+                        </div>
+
+                        <div class="input-group">
+                            <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col col-2">
+                    <!-- LISTS -->
+
+                    <div class="text-white text-bold text-title mt-0">LISTS</div>
+
+                    <div class="lists">
+                        <div class="list">1337 List</div>
+                        <div class="list">Example List</div>
+                        <div class="list">Test List</div>    
+                    </div>
+
+                </div>
+            </div>
+            <div class="footer">
+                <button class="btn text-white text-bold" data-toggle="modal_rss_settings">Apply Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL Transactions Settings -->
+
+    <div id="modal_transactions_settings" class="modal hidden">
+        <div class="backdrop" data-toggle="modal_transactions_settings"></div>
+        <div class="container">
+            <div class="header">
+                <div class="title">Transaction Settings</div>
+                <button class="btn-close" data-toggle="modal_transactions_settings">
+                    <svg class="icon">
+                        <use xlink:href="#icon_x_circle"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="body">
+                <!-- Slipagge tolerance -->
+
+                <div class="label has-btn-help">
+                    Slipagge tolerance
+                    <button class="btn-help" data-toggle="modal_help">
+                        <svg class="icon">
+                            <use xlink:href="#icon_question_two"></use>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="multiple-input-groups">            
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="0">
+                        <div class="addon">%</div>
+                    </div>
+
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="0">
+                        <div class="addon">%</div>
+                    </div>
+
+                    <div class="input-group">
+                        <button class="btn btn-toggle">Auto</button>
+                    </div>
+                </div>
+
+                <!-- Gas and limit -->
+
+                <div class="label">Gas and limit</div>
+
+                <div class="multiple-input-groups">            
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="0">
+                        <div class="addon">GWei</div>
+                    </div>
+
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="0">
+                        <div class="addon">MWei</div>
+                    </div>
+
+                    <div class="input-group">
+                        <button class="btn btn-toggle">Auto</button>
+                    </div>
+                </div>
+
+                <!-- Buy at -->
+
+                <div class="label">Buy at</div>
+
+                <div class="multiple-input-groups">            
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="0">
+                        <div class="addon">$</div>
+                    </div>
+
+                    <div class="input-group">
+                        <button class="btn btn-toggle">Market Price</button>
+                    </div>
+                </div>
+
+                <!-- Sell at -->
+
+                <div class="label">Sell at</div>
+
+                <div class="multiple-input-groups">            
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="0">
+                        <div class="addon">$</div>
+                    </div>
+
+                    <div class="input-group">
+                        <button class="btn btn-toggle">Market Price</button>
+                    </div>
+                </div>
+
+                <!-- Targets -->
+
+                <div class="label">Targets</div>
+
+                <div class="multiple-input-groups">
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="0" value="2">
+                        <div class="addon">X</div>
+                    </div>
+
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="0" value="50">
+                        <div class="addon">%</div>
+                    </div>
+
+                    <div class="input-group">
+                        <button class="btn btn-icon btn-remove-target">
+                            <svg class="icon">
+                                <use xlink:href="#icon_trash"></use>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="multiple-input-groups">
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="0" value="4">
+                        <div class="addon">X</div>
+                    </div>
+
+                    <div class="input-group has-addon is-invalid">
+                        <input class="form-control" placeholder="0">
+                        <div class="addon">%</div>
+                    </div>
+
+                    <div class="input-group">
+                        <button class="btn btn-icon btn-remove-target">
+                            <svg class="icon">
+                                <use xlink:href="#icon_trash"></use>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <button id="add_target" class="btn">Add Target</button>
+                </div>
+
+                <!-- Stop loss -->
+
+                <div class="label">Stop loss</div>
+
+                <div class="multiple-input-groups">
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="0">
+                        <div class="addon">X</div>
+                    </div>
+
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="0">
+                        <div class="addon">%</div>
+                    </div>
+
+                    <div class="input-group">
+                        <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+                    </div>
+                </div>
+
+                <!-- Trailing stop loss -->
+
+                <div class="label has-btn-help">
+                    Trailing stop loss
+                    <button class="btn-help" data-toggle="modal_help">
+                        <svg class="icon">
+                            <use xlink:href="#icon_question_two"></use>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="input-group">
+                    <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+                </div>
+
+                <!-- Skip receipts -->
+
+                <div class="label has-btn-help">
+                    Skip receipts
+                    <button class="btn-help" data-toggle="modal_help">
+                        <svg class="icon">
+                            <use xlink:href="#icon_question_two"></use>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="input-group">
+                    <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+                </div>
+
+                <!-- Moon bag -->
+
+                <div class="label">Moon bag</div>
+
+                <div class="multiple-input-groups">            
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="0">
+                        <div class="addon">$</div>
+                    </div>
+
+                    <div class="input-group">
+                        <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+                    </div>
+                </div>
+
+                <!-- Timeout -->
+
+                <div class="label">Timeout</div>
+
+                <div class="multiple-input-groups">            
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="0">
+                        <div class="addon">$</div>
+                    </div>
+
+                    <div class="input-group">
+                        <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+                    </div>
+                </div>
+
+                <!-- Transfer limit -->
+
+                <div class="label has-btn-help">
+                    Transfer limit
+                    <button class="btn-help" data-toggle="modal_help">
+                        <svg class="icon">
+                            <use xlink:href="#icon_question_two"></use>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="multiple-input-groups">     
+                    <div class="input-group has-addon">
+                        <input class="form-control" placeholder="0" value="10">
+                        <div class="addon">Times</div>
+                    </div>
+                </div>
+
+                <!-- Check kosherness -->
+
+                <div class="label has-btn-help">
+                    Check kosherness
+                    <button class="btn-help" data-toggle="modal_help">
+                        <svg class="icon">
+                            <use xlink:href="#icon_question_two"></use>
+                        </svg>
+                    </button>
+                </div>
+                <div class="multiple-input-groups">
+                    <div class="input-group w-100">
+                        <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+                    </div>
+        
+                    <div class="input-group">
+                        <button id="toggle_kosherness_settings" class="btn btn-icon">
+                            <svg class="icon">
+                                <use xlink:href="#icon_sliders"></use>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="kosherness_settings" class="hidden">
+                    <div class="input-group">
+                        <textarea id="kosherness_exceptions" class="form-control hidden" placeholder="Add each of your exceptions on a new line" rows="8"></textarea>
+                    </div>
+
+                    <div class="multiple-input-groups multi-switch">
+                        <div class="input-group w-100">
+                            <button class="btn btn-toggle active">Jewbot</button>
+                        </div>
+
+                        <div class="input-group w-100">
+                            <button class="btn btn-toggle">Mixed</button>
+                        </div>
+
+                        <div class="input-group w-100">
+                            <button class="btn btn-toggle">Custom</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <button class="btn text-white text-bold" data-toggle="modal_transactions_settings">Apply Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL Token -->
+
+    <div id="modal_token" class="modal hidden">
+        <div class="backdrop" data-toggle="modal_token"></div>
+        <div class="container">
+            <div class="header">
+                <div class="title">Token</div>
+                <button class="btn-close" data-toggle="modal_token">
+                    <svg class="icon">
+                        <use xlink:href="#icon_x_circle"></use>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="body">
+                <div class="col">
+                    <div class="text-white text-bold text-title mt-0">CHART</div>
+
+                    <img src="images/chart.png">
+                </div>
+
+                <div class="col">
+                    <div class="text-white text-bold text-title mt-0">DATA</div>
+
+                    <div class="data">
+                        <div class="symbol">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Symbol:</div>
+                            </div>
+                            <div>LEET</div>
+                        </div>
+
+                        <div class="name">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Name:</div>
+                            </div>
+                            <div>Elite Token</div>
+                        </div>
+
+                        <div class="price">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Price:</div>
+                            </div>
+                            <div>$0.1337</div>
+                        </div>
+
+                        <div class="mcap">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>MCap:</div>
+                            </div>
+                            <div>$1337.7k</div>
+                        </div>
+
+                        <div class="lq">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Liquidity:</div>
+                            </div>
+                            <div>20 BNB</div>
+                        </div>
+
+                        <div class="lq-status">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Liquidity Status:</div>
+                            </div>
+                            <div>Locked (15 days)</div>
+                        </div>
+
+                        <div class="kosherness">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Kosher:</div>
+                            </div>
+                            <div>Yes</div>
+                        </div>
+
+                        <div class="tax">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Tax:</div>
+                            </div>
+                            <div>15%</div>
+                        </div>
+
+                        <div class="age">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Age:</div>
+                            </div>
+                            <div>123 days</div>
+                        </div>
+
+                        <div class="holders">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Holders:</div>
+                            </div>
+                            <div>123</div>
+                        </div>
+
+                        <div class="whale">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Whale:</div>
+                            </div>
+                            <div>15%</div>
+                        </div>
+
+                        <div class="compiler">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Compiler vesion:</div>
+                            </div>
+                            <div>1.2.3</div>
+                        </div>
+
+                        <div class="liquidity-added">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Liquidity added:</div>
+                            </div>
+                            <div>2021-12-01 13:37:00</div>
+                        </div>
+
+                        <div class="liquidity-supply">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Liquidity supply:</div>
+                            </div>
+                            <div>123 BNB</div>
+                        </div>
+
+                        <div class="liquidity-holders">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Liquidity holders:</div>
+                            </div>
+                            <div>123</div>
+                        </div>
+
+                        <div class="decimals">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Decimals:</div>
+                            </div>
+                            <div>18</div>
+                        </div>
+
+                        <div class="chain">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Chain:</div>
+                            </div>
+                            <div>BSC</div>
+                        </div>
+
+                        <div class="liquidity-fee">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Liquidity fee:</div>
+                            </div>
+                            <div>15%</div>
+                        </div>
+
+                        <div class="redistribution-fee">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Redistribution fee:</div>
+                            </div>
+                            <div>10%</div>
+                        </div>
+
+                        <div class="burn-fee">
+                            <div>
+                                <svg class="icon">
+                                    <use xlink:href="#icon_question_one"></use>
+                                </svg>
+                                <div>Burn fee:</div>
+                            </div>
+                            <div>5%</div>
+                        </div>
+                    </div>
+
+                    <div class="text-white text-bold text-title">LINKS</div>
+
+                    <div class="links">
+                        <div>
+                            <a href="#">Contract</a>
+                        </div>
+
+                        <div>
+                            <a href="#">Transactions</a>
+                        </div>
+
+                        <div>
+                            <a href="#">Liquidity holders</a>
+                        </div>
+
+                        <div>
+                            <a href="#">Dev wallet</a>
+                        </div>
+        
+                        <div>
+                            <a href="#">Charts</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL Menu -->
+
+    <div id="modal_menu" class="modal hidden">
+        <div class="backdrop" data-toggle="modal_menu"></div>
+
+        <div class="container">
+            <div class="header">
+                <div class="title">Menu</div>
+                <button class="btn-close" data-toggle="modal_menu">
+                    <svg class="icon">
+                        <use xlink:href="#icon_x_circle"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="body">Content</div>
+        </div>
+    </div>
+
+    <!-- MODAL Help -->
+
+    <div id="modal_help" class="modal hidden">
+        <div class="backdrop" data-toggle="modal_help"></div>
+
+        <div class="container">
+            <div class="header">
+                <div class="title">Help</div>
+                <button class="btn-close" data-toggle="modal_help">
+                    <svg class="icon">
+                        <use xlink:href="#icon_x_circle"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="body">Content</div>
+        </div>
+    </div>
+
+    <script src="scripts/resizer.js"></script>
+    <script src="scripts/app.js"></script>
+
+</body>
+
+</html>
