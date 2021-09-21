@@ -1,1 +1,889 @@
-/* You can add global styles to this file, and also import other style files */
+/* base.style beggining */
+
+/**
+ * Colors
+ */
+
+:root {
+  --color-1: #191919;
+  --color-2: #262626;
+  --color-3: #333333;
+  --color-4: #404040;
+  --color-5: #666666;
+  --color-6: #999999;
+}
+
+/**
+* Reset
+*/
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+/**
+* Background
+*/
+
+body {
+  background-color: var(--color-1);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 304 304' width='304' height='304'%3E%3Cpath fill='%23232323' d='M44.1 224a5 5 0 1 1 0 2H0v-2h44.1zm160 48a5 5 0 1 1 0 2H82v-2h122.1zm57.8-46a5 5 0 1 1 0-2H304v2h-42.1zm0 16a5 5 0 1 1 0-2H304v2h-42.1zm6.2-114a5 5 0 1 1 0 2h-86.2a5 5 0 1 1 0-2h86.2zm-256-48a5 5 0 1 1 0 2H0v-2h12.1zm185.8 34a5 5 0 1 1 0-2h86.2a5 5 0 1 1 0 2h-86.2zM258 12.1a5 5 0 1 1-2 0V0h2v12.1zm-64 208a5 5 0 1 1-2 0v-54.2a5 5 0 1 1 2 0v54.2zm48-198.2V80h62v2h-64V21.9a5 5 0 1 1 2 0zm16 16V64h46v2h-48V37.9a5 5 0 1 1 2 0zm-128 96V208h16v12.1a5 5 0 1 1-2 0V210h-16v-76.1a5 5 0 1 1 2 0zm-5.9-21.9a5 5 0 1 1 0 2H114v48H85.9a5 5 0 1 1 0-2H112v-48h12.1zm-6.2 130a5 5 0 1 1 0-2H176v-74.1a5 5 0 1 1 2 0V242h-60.1zm-16-64a5 5 0 1 1 0-2H114v48h10.1a5 5 0 1 1 0 2H112v-48h-10.1zM66 284.1a5 5 0 1 1-2 0V274H50v30h-2v-32h18v12.1zM236.1 176a5 5 0 1 1 0 2H226v94h48v32h-2v-30h-48v-98h12.1zm25.8-30a5 5 0 1 1 0-2H274v44.1a5 5 0 1 1-2 0V146h-10.1zm-64 96a5 5 0 1 1 0-2H208v-80h16v-14h-42.1a5 5 0 1 1 0-2H226v18h-16v80h-12.1zm86.2-210a5 5 0 1 1 0 2H272V0h2v32h10.1zM98 101.9V146H53.9a5 5 0 1 1 0-2H96v-42.1a5 5 0 1 1 2 0zM53.9 34a5 5 0 1 1 0-2H80V0h2v34H53.9zm60.1 3.9V66H82v64H69.9a5 5 0 1 1 0-2H80V64h32V37.9a5 5 0 1 1 2 0zM101.9 82a5 5 0 1 1 0-2H128V37.9a5 5 0 1 1 2 0V82h-28.1zm16-64a5 5 0 1 1 0-2H146v44.1a5 5 0 1 1-2 0V18h-26.1zm102.2 270a5 5 0 1 1 0 2H98v14h-2v-16h124.1zM242 149.9V160h16v34h-16v62h48v48h-2v-46h-48v-66h16v-30h-16v-12.1a5 5 0 1 1 2 0zM53.9 18a5 5 0 1 1 0-2H64V2H48V0h18v18H53.9zm112 32a5 5 0 1 1 0-2H192V0h50v2h-48v48h-28.1zm-48-48a5 5 0 0 1-9.8-2h2.07a3 3 0 1 0 5.66 0H178v34h-18V21.9a5 5 0 1 1 2 0V32h14V2h-58.1zm0 96a5 5 0 1 1 0-2H137l32-32h39V21.9a5 5 0 1 1 2 0V66h-40.17l-32 32H117.9zm28.1 90.1a5 5 0 1 1-2 0v-76.51L175.59 80H224V21.9a5 5 0 1 1 2 0V82h-49.59L146 112.41v75.69zm16 32a5 5 0 1 1-2 0v-99.51L184.59 96H300.1a5 5 0 0 1 3.9-3.9v2.07a3 3 0 0 0 0 5.66v2.07a5 5 0 0 1-3.9-3.9H185.41L162 121.41v98.69zm-144-64a5 5 0 1 1-2 0v-3.51l48-48V48h32V0h2v50H66v55.41l-48 48v2.69zM50 53.9v43.51l-48 48V208h26.1a5 5 0 1 1 0 2H0v-65.41l48-48V53.9a5 5 0 1 1 2 0zm-16 16V89.41l-34 34v-2.82l32-32V69.9a5 5 0 1 1 2 0zM12.1 32a5 5 0 1 1 0 2H9.41L0 43.41V40.6L8.59 32h3.51zm265.8 18a5 5 0 1 1 0-2h18.69l7.41-7.41v2.82L297.41 50H277.9zm-16 160a5 5 0 1 1 0-2H288v-71.41l16-16v2.82l-14 14V210h-28.1zm-208 32a5 5 0 1 1 0-2H64v-22.59L40.59 194H21.9a5 5 0 1 1 0-2H41.41L66 216.59V242H53.9zm150.2 14a5 5 0 1 1 0 2H96v-56.6L56.6 162H37.9a5 5 0 1 1 0-2h19.5L98 200.6V256h106.1zm-150.2 2a5 5 0 1 1 0-2H80v-46.59L48.59 178H21.9a5 5 0 1 1 0-2H49.41L82 208.59V258H53.9zM34 39.8v1.61L9.41 66H0v-2h8.59L32 40.59V0h2v39.8zM2 300.1a5 5 0 0 1 3.9 3.9H3.83A3 3 0 0 0 0 302.17V256h18v48h-2v-46H2v42.1zM34 241v63h-2v-62H0v-2h34v1zM17 18H0v-2h16V0h2v18h-1zm273-2h14v2h-16V0h2v16zm-32 273v15h-2v-14h-14v14h-2v-16h18v1zM0 92.1A5.02 5.02 0 0 1 6 97a5 5 0 0 1-6 4.9v-2.07a3 3 0 1 0 0-5.66V92.1zM80 272h2v32h-2v-32zm37.9 32h-2.07a3 3 0 0 0-5.66 0h-2.07a5 5 0 0 1 9.8 0zM5.9 0A5.02 5.02 0 0 1 0 5.9V3.83A3 3 0 0 0 3.83 0H5.9zm294.2 0h2.07A3 3 0 0 0 304 3.83V5.9a5 5 0 0 1-3.9-5.9zm3.9 300.1v2.07a3 3 0 0 0-1.83 1.83h-2.07a5 5 0 0 1 3.9-3.9zM97 100a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-48 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 96a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-144a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM49 36a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM33 68a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 240a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm80-176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm112 176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 180a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 84a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+body::before {
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    var(--color-1) 0%,
+    rgba(0, 0, 0, 0) 50%,
+    var(--color-1) 100%
+  );
+}
+
+/**
+* Typography
+*/
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  color: var(--color-6);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  text-decoration: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/**
+* Layout
+*/
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+main > .container {
+  padding: 12px;
+}
+
+main > .container > .row {
+  margin: 12px auto 0;
+}
+
+main > .container > .row:first-child {
+  margin-top: 0;
+}
+
+.row-styled {
+  max-width: 560px;
+  box-shadow: 0px 48px 72px -24px rgba(0, 0, 0, 0.25);
+  background-color: var(--color-2);
+  border: 2px solid var(--color-3);
+  border-radius: 24px;
+  padding: 12px;
+}
+/* end of base.style */
+
+/**
+ * Buttons
+ */
+
+/* Button base */
+
+button * {
+  pointer-events: none;
+}
+
+.btn {
+  /* Reset */
+  width: 100%;
+  display: block;
+  font-size: 20px;
+  line-height: 32px;
+  text-decoration: none;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+  /* Style */
+  color: var(--color-6);
+  padding: 12px 16px;
+  background-color: var(--color-3);
+  border: 2px solid var(--color-4);
+  border-radius: 16px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 200ms ease-in-out, background-color 200ms ease-in-out,
+    color 200ms ease-in-out;
+}
+
+.btn.active,
+.btn:hover,
+.btn:focus {
+  /* Reset */
+  text-decoration: none;
+  /* Style */
+  border-color: var(--color-5);
+  background: var(--color-4);
+  color: #fff;
+}
+
+/* Button toggle */
+
+.btn-toggle {
+  min-width: 80px;
+  padding: 12px;
+}
+
+.btn-toggle.active {
+  background-color: #145423;
+  border-color: #19692c;
+}
+
+.btn-toggle.active:hover,
+.btn-toggle.active:focus {
+  background-color: #19692c;
+  border-color: #1e7e35;
+}
+
+/* Button icon */
+
+.btn-icon {
+  padding: 12px;
+  min-width: auto;
+}
+
+.btn-icon svg {
+  fill: var(--color-6);
+  transition: fill 200ms ease-in-out;
+  margin: 0 auto;
+}
+
+.btn-icon.active svg,
+.btn-icon:focus svg,
+.btn-icon:hover svg {
+  fill: #fff;
+}
+
+/**
+ * Helpers
+ */
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-title {
+  display: block;
+  border-bottom: 2px solid var(--color-3);
+  margin: 24px 0;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.icon-lg {
+  width: 64px;
+  height: 64px;
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+/**
+ * Header
+ */
+
+header {
+  position: relative;
+}
+
+header > .container {
+  display: flex;
+  flex-direction: column;
+}
+
+header .row {
+  display: flex;
+  flex-direction: column;
+  padding: 0 6px;
+}
+
+header .row .col {
+  padding: 12px 6px 0 6px;
+}
+
+@media (min-width: 360px) {
+  header > .container {
+    align-items: center;
+  }
+
+  header .row {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 720px) {
+  header > .container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/**
+ * Inputs
+ */
+
+/* Input label */
+
+.label {
+  color: #fff;
+  user-select: none;
+  margin-bottom: 8px;
+}
+
+/* Input label has help button */
+
+.label.has-btn-help {
+  display: flex;
+  justify-content: space-between;
+}
+
+.label.has-btn-help .btn-help {
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+}
+
+.label.has-btn-help .btn-help .icon {
+  fill: var(--color-4);
+  transition: fill 200ms ease-in-out;
+}
+
+.label.has-btn-help .btn-help:hover .icon,
+.label.has-btn-help .btn-help:focus .icon {
+  fill: var(--color-5);
+  transition: fill 200ms ease-in-out;
+}
+
+/* Input group */
+
+.input-group:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+/* Multiple input groups */
+
+.multiple-input-groups {
+  display: flex;
+  flex-direction: column;
+}
+
+.multiple-input-groups:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+@media (min-width: 720px) {
+  .multiple-input-groups {
+    flex-direction: row;
+  }
+
+  .multiple-input-groups .input-group:not(:last-child) {
+    margin-right: 12px;
+    margin-bottom: 0;
+  }
+}
+
+/* Input */
+
+.form-control {
+  /* Reset */
+  width: 100%;
+  display: block;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 56px;
+  text-align: right;
+  font-family: inherit;
+  /* Style */
+  color: #fff;
+  background-color: var(--color-2);
+  border: 2px solid var(--color-4);
+  border-radius: 16px;
+  padding: 0 16px;
+  transition: border-color 200ms ease-in-out;
+}
+
+.form-control:hover,
+.form-control:focus {
+  border-color: var(--color-5);
+}
+
+.form-control::placeholder {
+  color: var(--color-5);
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+}
+
+/* Input with addon */
+
+.has-addon {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.has-addon .form-control {
+  border-radius: 16px 0 0 16px;
+}
+
+.has-addon .form-control ~ .addon {
+  /* Reset */
+  line-height: 56px;
+  /* Style */
+  background-color: var(--color-3);
+  border: 2px solid var(--color-4);
+  border-radius: 0 16px 16px 0;
+  border-left: 0;
+  padding: 0 16px;
+}
+
+/* Input with animated addon */
+
+.has-animated-addon {
+  position: relative;
+  width: 100%;
+}
+
+.has-animated-addon .form-control {
+  transition: border-color 200ms ease-in-out, padding-bottom 200ms ease-in-out,
+    line-height 200ms ease-in-out;
+  /* Height must be set for transition to work correctly on chrome */
+  height: 60px;
+}
+
+.has-animated-addon:focus-within .form-control,
+.has-animated-addon .form-control:not(:placeholder-shown) {
+  padding-bottom: 18px;
+  line-height: 38px;
+}
+
+.has-animated-addon .addon {
+  position: absolute;
+  pointer-events: none;
+  color: var(--color-6);
+  font-size: 12px;
+  bottom: 2px;
+  right: 20px;
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.has-animated-addon:focus-within .addon,
+.has-animated-addon .form-control:not(:placeholder-shown) ~ .addon {
+  opacity: 1;
+}
+
+/* Input textarea */
+
+textarea.form-control {
+  resize: none;
+  text-align: left;
+  font-family: monospace;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Input is invalid */
+
+.is-invalid .form-control {
+  background-color: #340000;
+  border-color: #670000;
+}
+
+.is-invalid .form-control:hover,
+.is-invalid .form-control:focus {
+  border-color: #9a0000;
+}
+
+.is-invalid .form-control::placeholder {
+  color: #b30000;
+}
+
+.has-addon.is-invalid .form-control ~ .addon {
+  background-color: #4d0000;
+  border-color: #670000;
+  color: #b30000;
+}
+/**
+ * Helpers
+ */
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-title {
+  display: block;
+  border-bottom: 2px solid var(--color-3);
+  margin: 24px 0;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.icon-lg {
+  width: 64px;
+  height: 64px;
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+/**
+ * Modals
+ */
+
+.modal {
+  z-index: 2;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal .backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
+
+.modal .container {
+  z-index: 3;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 2px solid var(--color-3);
+  background-color: var(--color-1);
+  max-width: 480px;
+  width: 100%;
+}
+
+/* Modal header */
+
+.modal .header {
+  padding: 12px;
+  border-bottom: 2px solid var(--color-3);
+  background-color: var(--color-2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Modal header button close */
+
+.modal .header .btn-close {
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+}
+
+.modal .header .btn-close .icon {
+  fill: var(--color-4);
+  transition: fill 200ms ease-in-out;
+}
+
+.modal .header .btn-close:hover .icon,
+.modal .header .btn-close:focus .icon {
+  fill: var(--color-5);
+  transition: fill 200ms ease-in-out;
+}
+
+.modal .header .title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Modal body */
+
+.modal .body {
+  padding: 12px;
+  overflow-y: scroll;
+  /*
+   * Default modal max-height
+   * Adjust as needed to avoid Javascript
+   * vh - (vertical padding + (container - body))
+   */
+  max-height: calc(100vh - (24px + 62px));
+}
+
+/* Modal body scrollbar hide */
+
+.modal .body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.modal .body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Modal footer */
+
+.modal .footer {
+  padding: 12px;
+  border-top: 2px solid var(--color-3);
+  background-color: var(--color-2);
+}
+/**
+ * Various
+ */
+
+/*
+ * Loader animation
+ *
+ * HTML Markup: <div class="loader"><div></div><div></div><div></div><div></div></div>
+ */
+
+.loader {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  width: 76px;
+  height: 32px;
+}
+
+.loader div {
+  position: absolute;
+  top: 10px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.loader div:nth-child(1) {
+  left: 8px;
+  animation: loader1 0.6s infinite;
+}
+
+.loader div:nth-child(2) {
+  left: 8px;
+  animation: loader2 0.6s infinite;
+}
+
+.loader div:nth-child(3) {
+  left: 32px;
+  animation: loader2 0.6s infinite;
+}
+
+.loader div:nth-child(4) {
+  left: 56px;
+  animation: loader3 0.6s infinite;
+}
+
+@keyframes loader1 {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes loader3 {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes loader2 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+/**
+ * Swap View
+ */
+
+#swap .row {
+  max-width: 560px;
+}
+
+/* Token group */
+
+.token-group {
+  background-color: var(--color-3);
+  border: 2px solid var(--color-4);
+  border-radius: 16px;
+  margin-bottom: 12px;
+  padding: 12px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (min-width: 720px) {
+  .token-group {
+    flex-direction: row;
+  }
+
+  .token-group .input-group {
+    margin-bottom: 0;
+  }
+}
+
+/* Token group button */
+
+.token-group button {
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  color: #fff;
+  display: flex;
+}
+
+.token-group button .image {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-2);
+  border: 2px solid var(--color-4);
+  border-radius: 12px;
+  padding: 12px;
+  transition: border-color 200ms ease-in-out;
+}
+
+.token-group button:hover .image,
+.token-group button:focus .image {
+  border-color: var(--color-5);
+}
+
+.token-group button .symbol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: auto 8px;
+}
+
+.token-group button .symbol span:first-child {
+  white-space: nowrap;
+  line-height: 14px;
+  font-size: 14px;
+  color: var(--color-5);
+}
+
+.token-group button .symbol span:last-child {
+  font-size: 32px;
+  line-height: 32px;
+}
+
+/* Token group input */
+
+@media (min-width: 720px) {
+  .token-group .has-animated-addon {
+    max-width: 240px;
+  }
+}
+
+/* Buttons group */
+
+.buttons-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons-group .icon-buttons {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.buttons-group .icon-buttons button:not(:last-child) {
+  margin-right: 12px;
+}
+
+@media (min-width: 720px) {
+  .buttons-group {
+    flex-direction: row;
+  }
+
+  .buttons-group .icon-buttons {
+    margin-bottom: 0;
+    margin-right: 12px;
+  }
+}
+
+/* Terminal */
+
+#terminal {
+  font-family: monospace;
+  min-height: 136px;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-6);
+  background-color: var(--color-1);
+  border: 2px solid var(--color-4);
+  border-radius: 16px;
+}
+
+/* MODAL Token select && MODAL Tansaction settings */
+
+#modal_token_select .body,
+#modal_transactions_settings .body {
+  max-height: calc(100vh - (24px + 148px));
+}
+
+/* MODAL Transactions active & MODAL Transactions completed */
+
+.transaction-modal .transaction {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-2);
+  border: 2px solid var(--color-4);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  padding: 12px;
+}
+
+.transaction-modal .transaction:last-child {
+  margin-bottom: 0;
+}
+
+.transaction-modal .transaction .data .icon {
+  margin-right: 6px;
+}
+
+.transaction-modal .transaction .data > div > div:first-child {
+  display: flex;
+}
+
+@media (min-width: 720px) {
+  .transaction-modal .transaction .data > div {
+    display: flex;
+    margin-bottom: 12px;
+  }
+
+  .transaction-modal .transaction .data > div > div:first-child {
+    margin-right: 3px;
+  }
+}
+
+/* MODAL Help */
+
+#modal_help .container {
+  max-width: 400px;
+}
