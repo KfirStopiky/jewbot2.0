@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { SwapComponent } from './Components/swap/swap.component';
+import { TransactionSettingsComponent } from './Components/transaction-settings/transaction-settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SwapComponent
+    SwapComponent,
+    TransactionSettingsComponent
   ],
   imports: [
     BrowserModule,

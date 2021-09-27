@@ -119,7 +119,7 @@ document.addEventListener('click', function (e) {
 
 });
 
-/* Muti switch "Kosherness Settings" */
+/* Multi switch "Kosherness Settings" */
 
 document.querySelector('#toggle_kosherness_settings').addEventListener('click', function (e) {
     this.classList.toggle('active');

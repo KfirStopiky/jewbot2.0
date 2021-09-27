@@ -68,6 +68,7 @@
       <div class="buttons-group">
         <div class="icon-buttons">
           <button
+            (click)="openSettingsModal()"
             class="btn btn-icon"
             data-toggle="modal_transactions_settings"
           >
@@ -135,6 +136,198 @@
         <div>
           <span>[13:37:01]</span>
           Please connect your wallet...
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showmodal" id="modal_token_select" class="modal">
+    <div class="backdrop" data-toggle="modal_transactions_settings"></div>
+    <div class="container">
+      <div class="header">
+        <div class="title">Transaction Settings</div>
+        <button
+          (click)="closeSettingsModal()"
+          class="btn-close"
+          data-toggle="modal_transactions_settings"
+        >
+          <svg class="icon">
+            <use xlink:href="#icon_x_circle">
+              <svg id="icon_x_circle" viewBox="0 0 16 16">
+                <rect fill="#191919" width="16" height="16" rx="100%"></rect>
+                <path
+                  d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                ></path>
+                <path
+                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                ></path>
+              </svg>
+            </use>
+          </svg>
+        </button>
+      </div>
+      <div class="body">
+        <div class="label has-btn-help">
+          Slipagge tolerance
+          <button class="btn-help" data-toggle="modal_help">
+            <svg class="icon">
+              <use xlink:href="#icon_question_two">
+                <svg id="icon_question_two" viewBox="0 0 16 16">
+                  <rect fill="#191919" width="16" height="16" rx="100%"></rect>
+                  <path
+                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                  ></path>
+                  <path
+                    d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"
+                  ></path>
+                </svg>
+              </use>
+            </svg>
+          </button>
+        </div>
+        <div class="multiple-input-groups">
+          <div class="input-group has-addon">
+            <input type="text" class="form-control" placeholder="0" />
+            <div class="addon">%</div>
+          </div>
+          <div class="input-group has-addon">
+            <input type="text" class="form-control" placeholder="0" />
+            <div class="addon">%</div>
+          </div>
+          <div class="input-group">
+            <button class="btn btn-toggle">Auto</button>
+          </div>
+        </div>
+        <div class="label">Gas and limit</div>
+        <div class="multiple-input-groups">
+          <div class="input-group has-addon">
+            <input type="text" class="form-control" placeholder="0" />
+            <div class="addon">GWei</div>
+          </div>
+          <div class="input-group has-addon">
+            <input type="text" class="form-control" placeholder="0" />
+            <div class="addon">MWei</div>
+          </div>
+          <div class="input-group">
+            <button class="btn btn-toggle">Auto</button>
+          </div>
+        </div>
+        <div class="label">Buy At</div>
+        <div class="multiple-input-groups">
+          <div class="input-group has-addon">
+            <input type="text" class="form-control" placeholder="0" />
+            <div class="addon">$</div>
+          </div>
+          <div class="input-group">
+            <button class="btn btn-toggle">Market Price</button>
+          </div>
+        </div>
+        <div class="label">Sell at</div>
+        <div class="multiple-input-groups">
+          <div class="input-group has-addon">
+            <input type="text" class="form-control" placeholder="0" />
+            <div class="addon">$</div>
+          </div>
+          <div class="input-group">
+            <button class="btn btn-toggle">Market Price</button>
+          </div>
+        </div>
+        <div class="label">Targets</div>
+        <div class="input-group">
+          <button id="add_target" class="btn">Add Target</button>
+        </div>
+        <div class="label">Stop loss</div>
+        <div class="multiple-input-groups">
+          <div class="input-group has-addon">
+            <input type="text" class="form-control" placeholder="0" />
+            <div class="addon">X</div>
+          </div>
+          <div class="input-group has-addon">
+            <input type="text" class="form-control" placeholder="0" />
+            <div class="addon">%</div>
+          </div>
+          <div class="input-group">
+            <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+          </div>
+        </div>
+        <div class="label has-btn-help">
+          Trailing stop loss
+          <button class="btn-help" data-toggle="modal_help">
+            <svg class="icon">
+              <use xlink:href="#icon_question_two">
+                <svg id="icon_question_two" viewBox="0 0 16 16">
+                  <rect fill="#191919" width="16" height="16" rx="100%"></rect>
+                  <path
+                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                  ></path>
+                  <path
+                    d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"
+                  ></path>
+                </svg>
+              </use>
+            </svg>
+          </button>
+        </div>
+        <div class="input-group">
+          <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+        </div>
+        <div class="label has-btn-help">
+          Skip receipts
+          <button class="btn-help" data-toggle="modal_help">
+            <svg class="icon">
+              <use xlink:href="#icon_question_two">
+                <svg id="icon_question_two" viewBox="0 0 16 16">
+                  <rect fill="#191919" width="16" height="16" rx="100%"></rect>
+                  <path
+                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                  ></path>
+                  <path
+                    d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"
+                  ></path>
+                </svg>
+              </use>
+            </svg>
+          </button>
+        </div>
+        <div class="input-group">
+          <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+        </div>
+        <div class="label">Moon bag</div>
+        <div class="multiple-input-groups">
+          <div class="input-group has-addon">
+            <input type="text" class="form-control" placeholder="0" />
+            <div class="addon">$</div>
+          </div>
+          <div class="input-group">
+            <button class="btn btn-toggle">Market Price</button>
+          </div>
+        </div>
+        <div class="label">Timeout</div>
+        <div class="multiple-input-groups">
+          <div class="input-group has-addon">
+            <input type="text" class="form-control" placeholder="0" />
+            <div class="addon">$</div>
+          </div>
+          <div class="input-group">
+            <button class="btn btn-toggle">Market Price</button>
+          </div>
+        </div>
+        <div class="label has-btn-help">
+          Transfer limit
+          <button class="btn-help" data-toggle="modal_help">
+            <svg class="icon">
+              <use xlink:href="#icon_question_two">
+                <svg id="icon_question_two" viewBox="0 0 16 16">
+                  <rect fill="#191919" width="16" height="16" rx="100%"></rect>
+                  <path
+                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                  ></path>
+                  <path
+                    d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"
+                  ></path>
+                </svg>
+              </use>
+            </svg>
+          </button>
         </div>
       </div>
     </div>
