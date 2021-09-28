@@ -186,7 +186,12 @@
         </div>
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
-            <input type="text" class="form-control" placeholder="0" />
+            <input
+              type="text"
+              class="form-control"
+              [placeholder]="this.slipaggeTolerance"
+              (keyup)="onKey($event)"
+            />
             <div class="addon">%</div>
           </div>
           <div class="input-group has-addon">
