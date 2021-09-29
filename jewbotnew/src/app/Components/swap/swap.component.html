@@ -140,7 +140,14 @@
       </div>
     </div>
   </div>
-  <div *ngIf="showmodal" id="modal_token_select" class="modal">
+
+  <form
+    id="modal_token_select"
+    class="modal"
+    *ngIf="showmodal"
+    [formGroup]="transactionSettingsForm"
+    (ngSubmit)="saveSettings()"
+  >
     <div class="backdrop" data-toggle="modal_transactions_settings"></div>
     <div class="container">
       <div class="header">
@@ -187,15 +194,16 @@
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
             <input
-              type="text"
+              formControlName="slipaggeToleranceLeft"
               class="form-control"
-              [placeholder]="this.slipaggeTolerance"
-              (keyup)="onKey($event)"
             />
             <div class="addon">%</div>
           </div>
           <div class="input-group has-addon">
-            <input type="text" class="form-control" placeholder="0" />
+            <input
+              formControlName="slipaggeToleranceRight"
+              class="form-control"
+            />
             <div class="addon">%</div>
           </div>
           <div class="input-group">
@@ -205,11 +213,11 @@
         <div class="label">Gas and limit</div>
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
-            <input type="text" class="form-control" placeholder="0" />
+            <input formControlName="GWei" class="form-control" />
             <div class="addon">GWei</div>
           </div>
           <div class="input-group has-addon">
-            <input type="text" class="form-control" placeholder="0" />
+            <input formControlName="MWei" class="form-control" />
             <div class="addon">MWei</div>
           </div>
           <div class="input-group">
@@ -219,7 +227,7 @@
         <div class="label">Buy At</div>
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
-            <input type="text" class="form-control" placeholder="0" />
+            <input formControlName="buyAt" class="form-control" />
             <div class="addon">$</div>
           </div>
           <div class="input-group">
@@ -229,7 +237,7 @@
         <div class="label">Sell at</div>
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
-            <input type="text" class="form-control" placeholder="0" />
+            <input formControlName="sellAt" class="form-control" />
             <div class="addon">$</div>
           </div>
           <div class="input-group">
@@ -243,11 +251,11 @@
         <div class="label">Stop loss</div>
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
-            <input type="text" class="form-control" placeholder="0" />
+            <input formControlName="stopLossX" class="form-control" />
             <div class="addon">X</div>
           </div>
           <div class="input-group has-addon">
-            <input type="text" class="form-control" placeholder="0" />
+            <input formControlName="stopLossPrecentage" class="form-control" />
             <div class="addon">%</div>
           </div>
           <div class="input-group">
@@ -299,7 +307,7 @@
         <div class="label">Moon bag</div>
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
-            <input type="text" class="form-control" placeholder="0" />
+            <input formControlName="moonBag" class="form-control" />
             <div class="addon">$</div>
           </div>
           <div class="input-group">
@@ -309,7 +317,7 @@
         <div class="label">Timeout</div>
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
-            <input type="text" class="form-control" placeholder="0" />
+            <input formControlName="timeOut" class="form-control" />
             <div class="addon">$</div>
           </div>
           <div class="input-group">
@@ -336,7 +344,7 @@
         </div>
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
-            <input type="text" class="form-control" placeholder="0" />
+            <input formControlName="transferLimit" class="form-control" />
             <div class="addon">Times</div>
           </div>
         </div>
@@ -387,5 +395,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </main>
